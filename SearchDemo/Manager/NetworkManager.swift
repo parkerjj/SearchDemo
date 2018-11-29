@@ -9,11 +9,6 @@
 import Foundation
 
 
-enum Result<T> {
-    case Success(T: MotherResult)
-    case Error()
-}
-
 
 class NetworkManager {
     static let shared = NetworkManager()
@@ -30,8 +25,19 @@ extension NetworkManager  {
     
     func get<T : MotherResult>(api : String , params : [String : String], resultType : T.Type, completion : (T) -> ()) {
         
-        let retValue = T.self()
-        completion(retValue)
+        
+        
+//        let jsonDecoder = JSONDecoder()
+//        let modelObject = try? jsonDecoder.decode(T.self, from: data!)
+//        guard (modelObject != nil) else {
+//            return
+//        }
+//
+//        completion(modelObject!)
+        
+
+        
+
     }
     
 }

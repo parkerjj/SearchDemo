@@ -9,6 +9,7 @@
 import Foundation
 
 
-protocol MotherResult : HandyJSON {
+public typealias MotherResult = MotherResultProtocol & Codable
+public protocol MotherResultProtocol : Codable {
     
 }
