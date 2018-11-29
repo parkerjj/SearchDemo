@@ -14,8 +14,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        NetworkManager.shared.get(api: "123", params: ["1":"2"], resultType: SearchPhotoResult.self) { (result) in
-            print("Type is \(result)")
+        NetworkManager.shared.get(api: "search", params: ["query":"people"], resultType: SearchPhotoResult.self) { (returnCode, result) in
+            print("Type is \(String(describing: result))")
         }
         
     }
