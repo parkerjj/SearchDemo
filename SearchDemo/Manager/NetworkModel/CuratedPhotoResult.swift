@@ -11,6 +11,18 @@ import Foundation
 
 
 struct CuratedPhotoResult : MotherResult  {
+    var page            : Int
+    var perPage         : Int
+    var photos          : [PhotoInfo]?
+    var nextPage        : String
+    
+    
+    init() {
+        page = 0
+        perPage = 0
+        photos = [PhotoInfo]()
+        nextPage = ""
+    }
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CuratedPhotoResultCodingKeys.self)
@@ -35,10 +47,7 @@ struct CuratedPhotoResult : MotherResult  {
     
     
     
-    let page            : Int
-    let perPage         : Int
-    let photos          : [PhotoInfo]?
-    let nextPage        : String
+
 
     
     enum CuratedPhotoResultCodingKeys: String, CodingKey {

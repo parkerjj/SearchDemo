@@ -7,30 +7,26 @@
 //
 
 #import "SDVibrantButton.h"
+#import "UIColor+Utility.h"
 
 
-#define kSDVibrantButtonDefaultAnimationDuration 0.15
+#define kSDVibrantButtonDefaultAnimationInterval 0.15
 #define kSDVibrantButtonDefaultAlpha 1.0
-#define kSDVibrantButtonDefaultInvertAlphaHighlighted 1.0
 #define kSDVibrantButtonDefaultTranslucencyAlphaNormal 1.0
 #define kSDVibrantButtonDefaultTranslucencyAlphaHighlighted 0.5
 #define kSDVibrantButtonDefaultCornerRadius 4.0
-#define kSDVibrantButtonDefaultRoundingCorners UIRectCornerAllCorners
 #define kSDVibrantButtonDefaultBorderWidth 0.6
 #define kSDVibrantButtonDefaultFontSize 14.0
-#define kSDVibrantButtonDefaultTintColor [UIColor whiteColor]
-
-/** SDVibrantButton **/
+#define kSDVibrantButtonDefaultBackgroundColor [UIColor whiteColor]
 
 @interface SDVibrantButton () {
     
-    __strong UIColor *_tintColor;
+    __strong UIColor *_backgroundColor;
     
     CGFloat defaultW;
     CGFloat defaultH;
     CGFloat defaultR;
     CGFloat scale;
-    
 }
 
 @property (nonatomic, assign) SDVibrantButtonStyle style;
@@ -43,41 +39,10 @@
 @property (nonatomic, strong) SDVibrantButtonOverlay *highlightedOverlay;
 
 @property (nonatomic, assign) BOOL activeTouch;
-@property (nonatomic, assign) BOOL hideRightBorder;
 
 - (void)createOverlays;
-- (void)updateOverlayAlpha;
 
 @end
-
-/** SDVibrantButtonOverlay **/
-
-@interface SDVibrantButtonOverlay () {
-    
-    __strong UIFont *_font;
-    __strong UIColor *_tintColor;
-}
-
-@property (nonatomic, assign) SDVibrantButtonOverlayStyle style;
-@property (nonatomic, assign) CGFloat textHeight;
-@property (nonatomic, assign) BOOL hideRightBorder;
-
-- (void)_updateTextHeight;
-
-@end
-
-/** SDVibrantButtonGroup **/
-
-@interface SDVibrantButtonGroup ()
-
-@property (nonatomic, strong) NSArray *buttons;
-@property (nonatomic, assign) NSUInteger buttonCount;
-
-- (void)_initButtonGroupWithSelector:(SEL)selector andObjects:(NSArray *)objects style:(SDVibrantButtonStyle)style;
-
-@end
-
-/** SDVibrantButton **/
 
 @implementation SDVibrantButton
 
@@ -100,11 +65,9 @@
         
         // default values
         _animated = YES;
-        _animationDuration = kSDVibrantButtonDefaultAnimationDuration;
+        _animationInterval = kSDVibrantButtonDefaultAnimationInterval;
         _cornerRadius = kSDVibrantButtonDefaultCornerRadius;
-        _roundingCorners = kSDVibrantButtonDefaultRoundingCorners;
         _borderWidth = kSDVibrantButtonDefaultBorderWidth;
-        _invertAlphaHighlighted = kSDVibrantButtonDefaultInvertAlphaHighlighted;
         _translucencyAlphaNormal = kSDVibrantButtonDefaultTranslucencyAlphaNormal;
         _translucencyAlphaHighlighted = kSDVibrantButtonDefaultTranslucencyAlphaHighlighted;
         _alpha = kSDVibrantButtonDefaultAlpha;
@@ -121,8 +84,45 @@
         [self addTarget:self action:@selector(touchDown) forControlEvents:UIControlEventTouchDown | UIControlEventTouchDragInside];
         [self addTarget:self action:@selector(touchUp) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside | UIControlEventTouchDragOutside | UIControlEventTouchCancel];
         
-        [self initSettingWithColor:self.tintColor];
+        [self initSettingWithColor:self.backgroundColor];
 
+    }
+    return self;
+}
+
+
+- (instancetype)initWithCoder:(nonnull NSCoder *)aDecoder{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.style = SDVibrantButtonStyleInvert;
+        self.opaque = NO;
+        self.userInteractionEnabled = YES;
+        
+        // default values
+        _animated = YES;
+        _animationInterval = kSDVibrantButtonDefaultAnimationInterval;
+        _cornerRadius = kSDVibrantButtonDefaultCornerRadius;
+        _borderWidth = kSDVibrantButtonDefaultBorderWidth;
+        _translucencyAlphaNormal = kSDVibrantButtonDefaultTranslucencyAlphaNormal;
+        _translucencyAlphaHighlighted = kSDVibrantButtonDefaultTranslucencyAlphaHighlighted;
+        _alpha = kSDVibrantButtonDefaultAlpha;
+        _activeTouch = NO;
+        
+        // create overlay views
+        [self createOverlays];
+        
+#ifdef __IPHONE_8_0
+        // add the default vibrancy effect
+        self.vibrancyEffect = [UIVibrancyEffect effectForBlurEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
+#endif
+        
+        [self addTarget:self action:@selector(touchDown) forControlEvents:UIControlEventTouchDown | UIControlEventTouchDragInside];
+        [self addTarget:self action:@selector(touchUp) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside | UIControlEventTouchDragOutside | UIControlEventTouchCancel];
+        
+        self.text = self.titleLabel.text;
+        
+        [self initSettingWithColor:self.backgroundColor];
+        
     }
     return self;
 }
@@ -130,8 +130,9 @@
 
 
 
+
 - (void)initSettingWithColor:(UIColor*)color{
-    scale = 1.2;
+    scale = 0.9f;
     //    bgView = [[UIView alloc]initWithFrame:self.bounds];
     //    bgView.backgroundColor = color;
     //    bgView.userInteractionEnabled = NO;
@@ -145,11 +146,11 @@
     MMMaterialDesignSpinner *spinnerView = [[MMMaterialDesignSpinner alloc] initWithFrame:CGRectZero];
     self.spinnerView = spinnerView;
     self.spinnerView.bounds = CGRectMake(0, 0, defaultH*0.8, defaultH*0.8);
-    self.spinnerView.lineWidth = 2;
+    self.spinnerView.lineWidth = 1.5;
     self.spinnerView.center = CGPointMake(self.frame.size.height/2,self.frame.size.height/2);
     self.spinnerView.translatesAutoresizingMaskIntoConstraints = YES;
     self.spinnerView.userInteractionEnabled = NO;
-    [self addSubview:self.spinnerView];
+    [self.normalOverlay insertSubview:self.spinnerView atIndex:0];
     
     //    [self addTarget:self action:@selector(loadingAction) forControlEvents:UIControlEventTouchUpInside];
     
@@ -157,7 +158,11 @@
     //    self.forDisplayButton.userInteractionEnabled = NO;
     //    [self.forDisplayButton setBackgroundImage:[[self imageWithColor:color cornerRadius:3] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)] forState:UIControlStateNormal];
     //    [self addSubview:self.forDisplayButton];
-    }
+    
+    self.contentColor = color;
+}
+
+
 
 - (void)layoutSubviews {
 #ifdef __IPHONE_8_0
@@ -165,6 +170,12 @@
 #endif
     self.normalOverlay.frame = self.bounds;
     self.highlightedOverlay.frame = self.bounds;
+    
+    defaultW = self.frame.size.width;
+    defaultH = self.frame.size.height;
+    defaultR = self.layer.cornerRadius;
+    self.spinnerView.bounds = CGRectMake(0, 0, defaultH*0.8, defaultH*0.8);
+    
 }
 
 - (void)createOverlays {
@@ -190,34 +201,15 @@
     
 }
 
-- (void)updateOverlayAlpha {
-    
-    if (self.activeTouch) {
-        if (self.style == SDVibrantButtonStyleInvert) {
-            self.normalOverlay.alpha = 0.0;
-            self.highlightedOverlay.alpha = self.invertAlphaHighlighted * self.alpha;
-        } else if (self.style == SDVibrantButtonStyleTranslucent || self.style == SDVibrantButtonStyleFill) {
-            self.normalOverlay.alpha = self.translucencyAlphaHighlighted * self.alpha;
-        }
-    } else {
-        if (self.style == SDVibrantButtonStyleInvert) {
-            self.normalOverlay.alpha = self.alpha;
-            self.highlightedOverlay.alpha = 0.0;
-        } else if (self.style == SDVibrantButtonStyleTranslucent || self.style == SDVibrantButtonStyleFill) {
-            self.normalOverlay.alpha = self.translucencyAlphaNormal * self.alpha;
-        }
-    }
-}
-
-
 - (void)startLoading{
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    _isLoading = YES;
     self.text = @"";
-    self.spinnerView.tintColor = [UIColor colorWithWhite:0.9f alpha:0.3f];
+    self.spinnerView.tintColor = [UIColor colorWithHex:0xFFFFFF alpha:1.0f];
     
     [self setCornerRadius:defaultH*scale*0.5];
     
-    self.layer.bounds = CGRectMake(0, 0, defaultH*scale, defaultH*scale);
+//    self.layer.bounds = CGRectMake(0, 0, defaultH*scale, defaultH*scale);
     self.spinnerView.center = CGPointMake(self.frame.size.height/2,self.frame.size.height/2);
     [self.spinnerView startAnimating];
 }
@@ -225,8 +217,10 @@
 - (void)stopLoading{
     [[UIApplication sharedApplication] endIgnoringInteractionEvents];
     
+    _isLoading = NO;
+    [self setText:nil];
     [self.spinnerView stopAnimating];
-    self.layer.bounds = CGRectMake(0, 0, defaultW*scale, defaultH*scale);
+//    self.layer.bounds = CGRectMake(0, 0, defaultW*scale, defaultH*scale);
     
     
 }
@@ -249,10 +243,11 @@
     };
     
     if (self.animated) {
-        [UIView animateWithDuration:self.animationDuration animations:update];
+        [UIView animateWithDuration:self.animationInterval animations:update];
     } else {
         update();
     }
+    
 }
 
 - (void)touchUp {
@@ -269,80 +264,70 @@
     };
     
     if (self.animated) {
-        [UIView animateWithDuration:self.animationDuration animations:update];
+        [UIView animateWithDuration:self.animationInterval animations:update];
     } else {
         update();
     }
+    
+    
 }
 
 #pragma mark - Override Getters
 
-- (UIColor *)tintColor {
-    return _tintColor == nil ? kSDVibrantButtonDefaultTintColor : _tintColor;
+- (UIColor *)backgroundColor {
+    return _backgroundColor == nil ? kSDVibrantButtonDefaultBackgroundColor : _backgroundColor;
 }
 
 #pragma mark - Override Setters
 
-- (void)setAlpha:(CGFloat)alpha {
-    _alpha = alpha;
-    [self updateOverlayAlpha];
-}
-
-- (void)setInvertAlphaHighlighted:(CGFloat)invertAlphaHighlighted {
-    _invertAlphaHighlighted = invertAlphaHighlighted;
-    [self updateOverlayAlpha];
-}
-
-- (void)setTranslucencyAlphaNormal:(CGFloat)translucencyAlphaNormal {
-    _translucencyAlphaNormal = translucencyAlphaNormal;
-    [self updateOverlayAlpha];
-}
-
-- (void)setTranslucencyAlphaHighlighted:(CGFloat)translucencyAlphaHighlighted {
-    _translucencyAlphaHighlighted = translucencyAlphaHighlighted;
-    [self updateOverlayAlpha];
-}
-
 - (void)setCornerRadius:(CGFloat)cornerRadius {
-    _cornerRadius = cornerRadius;
     self.normalOverlay.cornerRadius = cornerRadius;
     self.highlightedOverlay.cornerRadius = cornerRadius;
 }
 
-- (void)setRoundingCorners:(UIRectCorner)roundingCorners {
-    _roundingCorners = roundingCorners;
-    self.normalOverlay.roundingCorners = roundingCorners;
-    self.highlightedOverlay.roundingCorners = roundingCorners;
-}
-
 - (void)setBorderWidth:(CGFloat)borderWidth {
-    _borderWidth = borderWidth;
     self.normalOverlay.borderWidth = borderWidth;
     self.highlightedOverlay.borderWidth = borderWidth;
 }
 
 - (void)setIcon:(UIImage *)icon {
-    _icon = icon;
     self.normalOverlay.icon = icon;
     self.highlightedOverlay.icon = icon;
 }
 
 - (void)setText:(NSString *)text {
-    _text = [text copy];
     self.normalOverlay.text = text;
     self.highlightedOverlay.text = text;
 }
 
 - (void)setFont:(UIFont *)font {
-    _font = font;
     self.normalOverlay.font = font;
     self.highlightedOverlay.font = font;
 }
 
+- (void)setAlpha:(CGFloat)alpha {
+    
+    _alpha = alpha;
+    
+    if (self.activeTouch) {
+        if (self.style == SDVibrantButtonStyleInvert) {
+            self.normalOverlay.alpha = 0.0;
+            self.highlightedOverlay.alpha = self.alpha;
+        } else if (self.style == SDVibrantButtonStyleTranslucent || self.style == SDVibrantButtonStyleFill) {
+            self.normalOverlay.alpha = self.translucencyAlphaHighlighted * self.alpha;
+        }
+    } else {
+        if (self.style == SDVibrantButtonStyleInvert) {
+            self.normalOverlay.alpha = self.alpha;
+            self.highlightedOverlay.alpha = 0.0;
+        } else if (self.style == SDVibrantButtonStyleTranslucent || self.style == SDVibrantButtonStyleFill) {
+            self.normalOverlay.alpha = self.translucencyAlphaNormal * self.alpha;
+        }
+    }
+}
+
 #ifdef __IPHONE_8_0
 - (void)setVibrancyEffect:(UIVibrancyEffect *)vibrancyEffect {
-    
-    _vibrancyEffect = vibrancyEffect;
     
     [self.normalOverlay removeFromSuperview];
     [self.highlightedOverlay removeFromSuperview];
@@ -362,24 +347,27 @@
 #endif
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor {
-    NSLog(@"SDVibrantButton: backgroundColor is deprecated and has no effect. Use tintColor instead.");
-    [super setBackgroundColor:backgroundColor];
-}
-
-- (void)setTintColor:(UIColor *)tintColor {
-    self.normalOverlay.tintColor = tintColor;
-    self.highlightedOverlay.tintColor = tintColor;
-}
-
-- (void)setHideRightBorder:(BOOL)hideRightBorder {
-    _hideRightBorder = hideRightBorder;
-    self.normalOverlay.hideRightBorder = hideRightBorder;
-    self.highlightedOverlay.hideRightBorder = hideRightBorder;
+    self.normalOverlay.backgroundColor = backgroundColor;
+    self.highlightedOverlay.backgroundColor = backgroundColor;
 }
 
 @end
 
-/** SDVibrantButtonOverlay **/
+@interface SDVibrantButtonOverlay () {
+    
+    __strong UIFont *_font;
+    __strong UIColor *_backgroundColor;
+    
+    UIImage *_iconBackup;
+
+}
+
+@property (nonatomic, assign) SDVibrantButtonOverlayStyle style;
+@property (nonatomic, assign) CGFloat textHeight;
+
+- (void)_updateTextHeight;
+
+@end
 
 @implementation SDVibrantButtonOverlay
 
@@ -394,7 +382,6 @@
     if (self = [super init]) {
         
         _cornerRadius = kSDVibrantButtonDefaultCornerRadius;
-        _roundingCorners = kSDVibrantButtonDefaultRoundingCorners;
         _borderWidth = kSDVibrantButtonDefaultBorderWidth;
         
         self.opaque = NO;
@@ -413,17 +400,13 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextClearRect(context, self.bounds);
     
-    [self.tintColor setStroke];
-    [self.tintColor setFill];
+    [self.backgroundColor setStroke];
+    [self.backgroundColor setFill];
     
-    CGRect boxRect = CGRectInset(self.bounds, self.borderWidth / 2, self.borderWidth / 2);
-    
-    if (self.hideRightBorder) {
-        boxRect.size.width += self.borderWidth * 2;
-    }
+    CGRect boxRect = CGRectInset(self.bounds, self.borderWidth, self.borderWidth);
     
     // draw background and border
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:boxRect byRoundingCorners:self.roundingCorners cornerRadii:CGSizeMake(self.cornerRadius, self.cornerRadius)];
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:boxRect cornerRadius:self.cornerRadius];
     path.lineWidth = self.borderWidth;
     [path stroke];
     
@@ -443,6 +426,9 @@
                                      iconSize.width,
                                      iconSize.height);
         
+        CGContextTranslateCTM(context, 0, size.height);
+        CGContextScaleCTM(context, 1.0, -1.0);
+        
         if (self.style == SDVibrantButtonOverlayStyleNormal) {
             // ref: http://blog.alanyip.me/tint-transparent-images-on-ios/
             CGContextSetBlendMode(context, kCGBlendModeNormal);
@@ -452,9 +438,6 @@
             // this will make the CGContextDrawImage below clear the image area
             CGContextSetBlendMode(context, kCGBlendModeDestinationOut);
         }
-        
-        CGContextTranslateCTM(context, 0, size.height);
-        CGContextScaleCTM(context, 1.0, -1.0);
         
         // for some reason, drawInRect does not work here
         CGContextDrawImage(context, iconRect, self.icon.CGImage);
@@ -472,7 +455,7 @@
             CGContextSetBlendMode(context, kCGBlendModeClear);
         }
         
-        [self.text drawInRect:CGRectMake(0.0, (size.height - self.textHeight) / 2, size.width, self.textHeight) withAttributes:@{ NSFontAttributeName:self.font, NSForegroundColorAttributeName:self.tintColor, NSParagraphStyleAttributeName:style }];
+        [self.text drawInRect:CGRectMake(0.0, (size.height - self.textHeight) / 2, size.width, self.textHeight) withAttributes:@{ NSFontAttributeName:self.font, NSForegroundColorAttributeName:self.backgroundColor, NSParagraphStyleAttributeName:style }];
     }
 }
 
@@ -482,19 +465,14 @@
     return _font == nil ? [UIFont systemFontOfSize:kSDVibrantButtonDefaultFontSize] : _font;
 }
 
-- (UIColor *)tintColor {
-    return _tintColor == nil ? kSDVibrantButtonDefaultTintColor : _tintColor;
+- (UIColor *)backgroundColor {
+    return _backgroundColor == nil ? kSDVibrantButtonDefaultBackgroundColor : _backgroundColor;
 }
 
 #pragma mark - Override Setters
 
 - (void)setCornerRadius:(CGFloat)cornerRadius {
     _cornerRadius = cornerRadius;
-    [self setNeedsDisplay];
-}
-
-- (void)setRoundingCorners:(UIRectCorner)roundingCorners {
-    _roundingCorners = roundingCorners;
     [self setNeedsDisplay];
 }
 
@@ -510,6 +488,14 @@
 }
 
 - (void)setText:(NSString *)text {
+    if (text == nil) {
+        [self setIcon:[_iconBackup copy]];
+        _text = [text copy];
+        [self _updateTextHeight];
+        [self setNeedsDisplay];
+        return;
+    }
+    _iconBackup = [_icon copy];
     _icon = nil;
     _text = [text copy];
     [self _updateTextHeight];
@@ -523,17 +509,7 @@
 }
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor {
-    NSLog(@"SDVibrantButtonOverlay: backgroundColor is deprecated and has no effect. Use tintColor instead.");
-    [super setBackgroundColor:backgroundColor];
-}
-
-- (void)setTintColor:(UIColor *)tintColor {
-    _tintColor = tintColor;
-    [self setNeedsDisplay];
-}
-
-- (void)setHideRightBorder:(BOOL)hideRightBorder {
-    _hideRightBorder = hideRightBorder;
+    _backgroundColor = backgroundColor;
     [self setNeedsDisplay];
 }
 
@@ -542,168 +518,6 @@
 - (void)_updateTextHeight {
     CGRect bounds = [self.text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName:self.font } context:nil];
     self.textHeight = bounds.size.height;
-}
-
-@end
-
-/** SDVibrantButtonGroup **/
-
-@implementation SDVibrantButtonGroup
-
-- (instancetype)init {
-    NSLog(@"SDVibrantButtonGroup must be initialized with initWithFrame:buttonTitles:style: or initWithFrame:buttonIcons:style:");
-    return nil;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    NSLog(@"SDVibrantButtonGroup must be initialized with initWithFrame:buttonTitles:style: or initWithFrame:buttonIcons:style:");
-    return nil;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame buttonTitles:(NSArray *)buttonTitles style:(SDVibrantButtonStyle)style {
-    if (self = [super initWithFrame:frame]) {
-        [self _initButtonGroupWithSelector:@selector(setText:) andObjects:buttonTitles style:style];
-    }
-    return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame buttonIcons:(NSArray *)buttonIcons style:(SDVibrantButtonStyle)style {
-    if (self = [super initWithFrame:frame]) {
-        [self _initButtonGroupWithSelector:@selector(setIcon:) andObjects:buttonIcons style:style];
-    }
-    return self;
-}
-
-- (void)layoutSubviews {
-    
-    if (self.buttonCount == 0) return;
-    
-    CGSize size = self.bounds.size;
-    CGFloat buttonWidth = size.width / self.buttonCount;
-    CGFloat buttonHeight = size.height;
-    
-    [self.buttons enumerateObjectsUsingBlock:^void(SDVibrantButton *button, NSUInteger idx, BOOL *stop) {
-        button.frame = CGRectMake(buttonWidth * idx, 0.0, buttonWidth, buttonHeight);
-    }];
-}
-
-- (SDVibrantButton *)buttonAtIndex:(NSUInteger)index {
-    return self.buttons[index];
-}
-
-#pragma mark - Override Setters
-
-- (void)setAnimated:(BOOL)animated {
-    _animated = animated;
-    for (SDVibrantButton *button in self.buttons) {
-        button.animated = animated;
-    }
-}
-
-- (void)setAnimationDuration:(CGFloat)animationDuration {
-    _animationDuration = animationDuration;
-    for (SDVibrantButton *button in self.buttons) {
-        button.animationDuration = animationDuration;
-    }
-}
-
-- (void)setInvertAlphaHighlighted:(CGFloat)invertAlphaHighlighted {
-    _invertAlphaHighlighted = invertAlphaHighlighted;
-    for (SDVibrantButton *button in self.buttons) {
-        button.invertAlphaHighlighted = invertAlphaHighlighted;
-    }
-}
-
-- (void)setTranslucencyAlphaNormal:(CGFloat)translucencyAlphaNormal {
-    _translucencyAlphaNormal = translucencyAlphaNormal;
-    for (SDVibrantButton *button in self.buttons) {
-        button.translucencyAlphaNormal = translucencyAlphaNormal;
-    }
-}
-
-- (void)setTranslucencyAlphaHighlighted:(CGFloat)translucencyAlphaHighlighted {
-    _translucencyAlphaHighlighted = translucencyAlphaHighlighted;
-    for (SDVibrantButton *button in self.buttons) {
-        button.translucencyAlphaHighlighted = translucencyAlphaHighlighted;
-    }
-}
-
-- (void)setCornerRadius:(CGFloat)cornerRadius {
-    _cornerRadius = cornerRadius;
-    [self.buttons.firstObject setCornerRadius:cornerRadius];
-    [self.buttons.lastObject setCornerRadius:cornerRadius];
-}
-
-- (void)setBorderWidth:(CGFloat)borderWidth {
-    _borderWidth = borderWidth;
-    for (SDVibrantButton *button in self.buttons) {
-        button.borderWidth = borderWidth;
-    }
-}
-
-- (void)setFont:(UIFont *)font {
-    _font = font;
-    [self.buttons makeObjectsPerformSelector:@selector(setFont:) withObject:font];
-}
-
-#ifdef __IPHONE_8_0
-- (void)setVibrancyEffect:(UIVibrancyEffect *)vibrancyEffect {
-    _vibrancyEffect = vibrancyEffect;
-    [self.buttons makeObjectsPerformSelector:@selector(setVibrancyEffect:) withObject:vibrancyEffect];
-}
-#endif
-
-- (void)setBackgroundColor:(UIColor *)backgroundColor {
-    NSLog(@"SDVibrantButtonGroup: backgroundColor is deprecated and has no effect. Use tintColor instead.");
-    [super setBackgroundColor:backgroundColor];
-}
-
-- (void)setTintColor:(UIColor *)tintColor {
-    _tintColor = tintColor;
-    [self.buttons makeObjectsPerformSelector:@selector(setTintColor:) withObject:tintColor];
-}
-
-#pragma mark - Private Methods
-
-- (void)_initButtonGroupWithSelector:(SEL)selector andObjects:(NSArray *)objects style:(SDVibrantButtonStyle)style {
-    
-    _cornerRadius = kSDVibrantButtonDefaultCornerRadius;
-    _borderWidth = kSDVibrantButtonDefaultBorderWidth;
-    
-    self.opaque = NO;
-    self.userInteractionEnabled = YES;
-    
-    NSMutableArray *buttons = [NSMutableArray array];
-    NSUInteger count = objects.count;
-    
-    [objects enumerateObjectsUsingBlock:^void(id object, NSUInteger idx, BOOL *stop) {
-        
-        SDVibrantButton *button = [[SDVibrantButton alloc] initWithFrame:CGRectZero style:style];
-        
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [button performSelector:selector withObject:object];
-#pragma clang diagnostic pop
-        
-        if (count == 1) {
-            button.roundingCorners = UIRectCornerAllCorners;
-        } else if (idx == 0) {
-            button.roundingCorners = UIRectCornerTopLeft | UIRectCornerBottomLeft;
-            button.hideRightBorder = YES;
-        } else if (idx == count - 1) {
-            button.roundingCorners = UIRectCornerTopRight | UIRectCornerBottomRight;
-        } else {
-            button.roundingCorners = (UIRectCorner)0;
-            button.cornerRadius = 0;
-            button.hideRightBorder = YES;
-        }
-        
-        [self addSubview:button];
-        [buttons addObject:button];
-    }];
-    
-    self.buttons = buttons;
-    self.buttonCount = count;
 }
 
 @end

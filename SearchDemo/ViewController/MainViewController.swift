@@ -10,7 +10,7 @@ import UIKit
 import SceneKit
 import SDWebImage
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     @IBOutlet var searchButton : SDSearchButtonView!
     @IBOutlet var historyView : SKView!
     @IBOutlet var bannerView1 : SDScrolledCollectionView!
@@ -18,16 +18,14 @@ class ViewController: UIViewController {
     private var _animatedMenuScene = AnimatedMenuScene(size: CGSize())
     private var _dataArray = [CuratedPhotoResult]()
     
+    // For Transition
+    private let transition = BubbleTransition()
+    private let interactiveTransition = BubbleInteractiveTransition()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        NetworkManager.shared.get(api: "search", params: ["query":"people"], resultType: SearchPhotoResult.self) { (returnCode, result) in
-            print("Type is \(String(describing: result))")
-        }
-
-
 
         buildRootView()
         initBannerData()
@@ -69,7 +67,7 @@ class ViewController: UIViewController {
 }
 
 // MARK: - Load Init Data & Banner Controll
-extension ViewController : UICollectionViewDelegate , UICollectionViewDataSource {
+extension MainViewController : UICollectionViewDelegate , UICollectionViewDataSource {
     func initBannerData() {
         
         for _ in 0..<2 {
@@ -93,12 +91,12 @@ extension ViewController : UICollectionViewDelegate , UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard (_dataArray.count > 0) else {
-            return 0
+            return 4
         }
         
         let result = (collectionView == bannerView1) ? self._dataArray.first : self._dataArray.last
 
-        return  (result!.photos?.count)!
+        return  (result!.photos?.count)! + 4
     }
     
     
@@ -106,9 +104,15 @@ extension ViewController : UICollectionViewDelegate , UICollectionViewDataSource
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainViewCollectionViewReuseId", for: indexPath) as! BaseCollectionViewCell
         
+        if indexPath.row < 4 {
+            let offset = collectionView == bannerView1 ?  0 : 4
+            cell.imageView.image = UIImage(named: "Default_" + String(offset + indexPath.row))
+            return cell
+        }
+        
         
         let result = (collectionView == bannerView1) ? self._dataArray.first : self._dataArray.last
-        let urlString = result?.photos![indexPath.row].photoURL.medium
+        let urlString = result?.photos![indexPath.row - 4].photoURL.medium
         
         cell.imageView.sd_setImage(with: URL(string: urlString!), completed: nil)
         cell.layoutIfNeeded()
@@ -118,7 +122,7 @@ extension ViewController : UICollectionViewDelegate , UICollectionViewDataSource
 
 
 // MARK: - SDSearchButtonViewActionProtocol & Animation
-extension ViewController : SDSearchButtonViewActionProtocol {
+extension MainViewController : SDSearchButtonViewActionProtocol {
     func searchButtonClicked(button: SDSearchButtonView) {
         button.transformStatus = .expend
     }
@@ -203,7 +207,11 @@ extension ViewController : SDSearchButtonViewActionProtocol {
         self._animatedMenuScene.removeAllChildren()
         
         searchButton.transformStatus = .circle
-        searchButton.startLoading()
+        
+        guard (textField.text != nil && (textField.text?.count)! > 0) else {
+            return
+        }
+        searchQuary(keyWord: textField.text!)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -216,19 +224,104 @@ extension ViewController : SDSearchButtonViewActionProtocol {
 
 
 // MARK: - History
-extension ViewController  : AnimatedMenuSceneDelegate{
+extension MainViewController  : AnimatedMenuSceneDelegate{
+    
+    func historyArray () ->  [String]{
+        var historyArray : [String]? = StorageManager.getLocalValue(forKey: "HistoryArray") as? [String]
+        if historyArray == nil {
+            historyArray = ["Light","City","Food","Cat","Plant"]
+        }
+        
+        return historyArray!
+    }
+    
     func refreshAndLayoutHistory() {
         self._animatedMenuScene.size = self.historyView.frame.size
-        for _ in 0...5 {
-            let node = MenuItemNode.menuNode(withTitle: "Test", withPercentageSize: 0.5)
+        
+        
+        
+        for str in historyArray() {
+            let percent = 0.4 + Double(arc4random()%3) / 10.0
+            let node = MenuItemNode.menuNode(withTitle: str, withPercentageSize: CGFloat(percent))
             self._animatedMenuScene.addChild(node!)
         }
+    }
+    
+    
+    func animatedMenuScene(_ animatedScene: AnimatedMenuScene!, didSelectNodeAt index: Int) {
+        searchButton.clearTextField()
+        searchButton.transformStatus = .circle
+        
+        let str = historyArray()[index]
+        searchQuary(keyWord: str)
     }
 }
 
 // MARK: Busniess Logic
-extension ViewController{
+extension MainViewController{
     func searchQuary( keyWord : String ) {
+        searchButton.clearTextField()
+
+        searchButton.startLoading()
+        
+        
+        NetworkManager.shared.get(api: "search", params: ["query":keyWord], resultType: SearchPhotoResult.self) { (returnCode, result) in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                self.searchButton.stopLoading()
+            })
+            
+            if returnCode >= 0 {
+                var historyArray = self.historyArray()
+                historyArray.insert(keyWord, at: 0)
+                
+                // Remove Duplicate
+                var result = [String]()
+                for value in historyArray {
+                    if result.contains(value) == false {
+                        result.append(value)
+                    }
+                }
+                historyArray = Array(result[0..<5])
+                
+                // Storage History Array
+                StorageManager.setLocalValueWithValue(historyArray as NSCopying, forKey: "HistoryArray")
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                    self.performSegue(withIdentifier: "Main2Fall", sender: result)
+                })
+                
+            }
+        }
+        
         
     }
+}
+
+
+extension MainViewController : UIViewControllerTransitioningDelegate {
+    
+    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let controller = segue.destination
+        controller.transitioningDelegate = self
+        controller.modalPresentationStyle = .custom
+        
+        
+    }
+    
+    // MARK: UIViewControllerTransitioningDelegate
+    
+    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .present
+        transition.startingPoint = searchButton.center
+        transition.bubbleColor = searchButton.backgroundColor!
+        return transition
+    }
+    
+    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .dismiss
+        transition.startingPoint = searchButton.center
+        transition.bubbleColor = searchButton.backgroundColor!
+        return transition
+    }
+    
 }

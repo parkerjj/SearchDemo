@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Using IQKeyboardManager
         IQKeyboardManager.shared.enable = true
+        
+        // Init Storage Manager
+        StorageManager.default()
         return true
     }
 

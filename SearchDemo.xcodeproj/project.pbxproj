@@ -75,8 +75,13 @@
 		E32D1F4221B2A4CF00B3A6AA /* SDScrolledCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32D1F4121B2A4CF00B3A6AA /* SDScrolledCollectionView.swift */; };
 		E32D1F4321B2B7A800B3A6AA /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E32D1F3121B294B500B3A6AA /* SDWebImage.framework */; };
 		E32D1F4421B2B7A800B3A6AA /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E32D1F3121B294B500B3A6AA /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E32D1F4B21B2C4F100B3A6AA /* BubbleTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32D1F4A21B2C4F100B3A6AA /* BubbleTransition.swift */; };
+		E32D1F4E21B2C6C900B3A6AA /* FallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32D1F4D21B2C6C900B3A6AA /* FallViewController.swift */; };
+		E32D1F5321B2D1D200B3A6AA /* StorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E32D1F5221B2D1D200B3A6AA /* StorageManager.m */; };
+		E32D1F5B21B2E41C00B3A6AA /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E32D1F5721B2E41C00B3A6AA /* NSData+Base64.m */; };
+		E32D1F5C21B2E41C00B3A6AA /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = E32D1F5921B2E41C00B3A6AA /* NSString+Base64.m */; };
 		E3C3442521AFAE2E000FC71C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C3442421AFAE2E000FC71C /* AppDelegate.swift */; };
-		E3C3442721AFAE2E000FC71C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C3442621AFAE2E000FC71C /* ViewController.swift */; };
+		E3C3442721AFAE2E000FC71C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C3442621AFAE2E000FC71C /* MainViewController.swift */; };
 		E3C3442A21AFAE2E000FC71C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3C3442821AFAE2E000FC71C /* Main.storyboard */; };
 		E3C3442C21AFAE30000FC71C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3C3442B21AFAE30000FC71C /* Assets.xcassets */; };
 		E3C3442F21AFAE30000FC71C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3C3442D21AFAE30000FC71C /* LaunchScreen.storyboard */; };
@@ -247,9 +252,17 @@
 		E32D1F3D21B29D8300B3A6AA /* CuratedPhotoResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuratedPhotoResult.swift; sourceTree = "<group>"; };
 		E32D1F3F21B29E2F00B3A6AA /* PhotoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfo.swift; sourceTree = "<group>"; };
 		E32D1F4121B2A4CF00B3A6AA /* SDScrolledCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDScrolledCollectionView.swift; sourceTree = "<group>"; };
+		E32D1F4A21B2C4F100B3A6AA /* BubbleTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleTransition.swift; sourceTree = "<group>"; };
+		E32D1F4D21B2C6C900B3A6AA /* FallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallViewController.swift; sourceTree = "<group>"; };
+		E32D1F5121B2D1D200B3A6AA /* StorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageManager.h; sourceTree = "<group>"; };
+		E32D1F5221B2D1D200B3A6AA /* StorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageManager.m; sourceTree = "<group>"; };
+		E32D1F5721B2E41C00B3A6AA /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		E32D1F5821B2E41C00B3A6AA /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		E32D1F5921B2E41C00B3A6AA /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
+		E32D1F5A21B2E41C00B3A6AA /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
 		E3C3442121AFAE2E000FC71C /* SearchDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C3442421AFAE2E000FC71C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E3C3442621AFAE2E000FC71C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E3C3442621AFAE2E000FC71C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E3C3442921AFAE2E000FC71C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E3C3442B21AFAE30000FC71C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3C3442E21AFAE30000FC71C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -308,6 +321,8 @@
 		E300A22421B23AFA00A74121 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				E32D1F5621B2E40A00B3A6AA /* Categlory */,
+				E32D1F4921B2C4E500B3A6AA /* BubbleTransition */,
 				E32D1F2321B294B500B3A6AA /* SDWebImage.xcodeproj */,
 				E32D1BA621B2820500B3A6AA /* MMMaterialDesignSpinner */,
 				E300A29A21B2565A00A74121 /* AnimatedMenuPool */,
@@ -427,8 +442,6 @@
 		E300A29A21B2565A00A74121 /* AnimatedMenuPool */ = {
 			isa = PBXGroup;
 			children = (
-				E300A2A721B2572600A74121 /* UIColor+Utility.h */,
-				E300A2A821B2572600A74121 /* UIColor+Utility.m */,
 				E300A29B21B2565A00A74121 /* AnimatedMenuScene.m */,
 				E300A29C21B2565A00A74121 /* MenuItemNode.m */,
 				E300A29D21B2565A00A74121 /* DSMultilineLabelNode.m */,
@@ -463,6 +476,36 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E32D1F4921B2C4E500B3A6AA /* BubbleTransition */ = {
+			isa = PBXGroup;
+			children = (
+				E32D1F4A21B2C4F100B3A6AA /* BubbleTransition.swift */,
+			);
+			path = BubbleTransition;
+			sourceTree = "<group>";
+		};
+		E32D1F4C21B2C69700B3A6AA /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E3C3442621AFAE2E000FC71C /* MainViewController.swift */,
+				E32D1F4D21B2C6C900B3A6AA /* FallViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		E32D1F5621B2E40A00B3A6AA /* Categlory */ = {
+			isa = PBXGroup;
+			children = (
+				E32D1F5821B2E41C00B3A6AA /* NSData+Base64.h */,
+				E32D1F5721B2E41C00B3A6AA /* NSData+Base64.m */,
+				E32D1F5A21B2E41C00B3A6AA /* NSString+Base64.h */,
+				E32D1F5921B2E41C00B3A6AA /* NSString+Base64.m */,
+				E300A2A721B2572600A74121 /* UIColor+Utility.h */,
+				E300A2A821B2572600A74121 /* UIColor+Utility.m */,
+			);
+			path = Categlory;
+			sourceTree = "<group>";
+		};
 		E3C3441821AFAE2E000FC71C = {
 			isa = PBXGroup;
 			children = (
@@ -487,11 +530,10 @@
 			isa = PBXGroup;
 			children = (
 				E300A22421B23AFA00A74121 /* Utility */,
-				E3D0937421B11BC40007D7FA /* View */,
-				E3C3449621AFBD0A000FC71C /* NetworkModel */,
 				E3C3444421AFAE3E000FC71C /* Manager */,
+				E3D0937421B11BC40007D7FA /* View */,
+				E32D1F4C21B2C69700B3A6AA /* ViewController */,
 				E3C3442421AFAE2E000FC71C /* AppDelegate.swift */,
-				E3C3442621AFAE2E000FC71C /* ViewController.swift */,
 				E3C3442821AFAE2E000FC71C /* Main.storyboard */,
 				E3C3442B21AFAE30000FC71C /* Assets.xcassets */,
 				E3C3442D21AFAE30000FC71C /* LaunchScreen.storyboard */,
@@ -513,7 +555,10 @@
 		E3C3444421AFAE3E000FC71C /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				E3C3449621AFBD0A000FC71C /* NetworkModel */,
 				E3C3444521AFAE56000FC71C /* NetworkManager.swift */,
+				E32D1F5121B2D1D200B3A6AA /* StorageManager.h */,
+				E32D1F5221B2D1D200B3A6AA /* StorageManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -744,6 +789,7 @@
 				E300A29121B23FBF00A74121 /* IQUIScrollView+Additions.swift in Sources */,
 				E32D1F4021B29E2F00B3A6AA /* PhotoInfo.swift in Sources */,
 				E300A25121B23B0C00A74121 /* ConstraintInsets.swift in Sources */,
+				E32D1F4B21B2C4F100B3A6AA /* BubbleTransition.swift in Sources */,
 				E300A25821B23B0C00A74121 /* UILayoutSupport+Extensions.swift in Sources */,
 				E300A26621B23B0C00A74121 /* Debugging.swift in Sources */,
 				E300A25C21B23B0C00A74121 /* Typealiases.swift in Sources */,
@@ -756,9 +802,10 @@
 				E300A24D21B23B0C00A74121 /* ConstraintMakerPriortizable.swift in Sources */,
 				E300A25621B23B0C00A74121 /* ConstraintInsetTarget.swift in Sources */,
 				E300A28F21B23FBF00A74121 /* IQKeyboardReturnKeyHandler.swift in Sources */,
-				E3C3442721AFAE2E000FC71C /* ViewController.swift in Sources */,
+				E3C3442721AFAE2E000FC71C /* MainViewController.swift in Sources */,
 				E300A24A21B23B0C00A74121 /* ConstraintMultiplierTarget.swift in Sources */,
 				E300A2A121B2565A00A74121 /* AnimatedMenuScene.m in Sources */,
+				E32D1F5C21B2E41C00B3A6AA /* NSString+Base64.m in Sources */,
 				E32D1F3E21B29D8300B3A6AA /* CuratedPhotoResult.swift in Sources */,
 				E300A22321B173D500A74121 /* SDSearchButtonView.swift in Sources */,
 				E300A28721B23FBE00A74121 /* IQTitleBarButtonItem.swift in Sources */,
@@ -775,6 +822,7 @@
 				E300A2A921B2572600A74121 /* UIColor+Utility.m in Sources */,
 				E300A26321B23B0C00A74121 /* ConstraintView+Extensions.swift in Sources */,
 				E300A28B21B23FBF00A74121 /* IQInvocation.swift in Sources */,
+				E32D1F4E21B2C6C900B3A6AA /* FallViewController.swift in Sources */,
 				E300A26A21B23B0C00A74121 /* ConstraintLayoutGuide+Extensions.swift in Sources */,
 				E300A28A21B23FBF00A74121 /* IQUIView+IQKeyboardToolbar.swift in Sources */,
 				E300A25521B23B0C00A74121 /* ConstraintPriority.swift in Sources */,
@@ -785,11 +833,13 @@
 				E300A24E21B23B0C00A74121 /* ConstraintAttributes.swift in Sources */,
 				E3C3449A21AFBE71000FC71C /* SearchPhotoResult.swift in Sources */,
 				E300A28821B23FBF00A74121 /* IQBarButtonItem.swift in Sources */,
+				E32D1F5B21B2E41C00B3A6AA /* NSData+Base64.m in Sources */,
 				E300A24C21B23B0C00A74121 /* ConstraintDescription.swift in Sources */,
 				E300A25321B23B0C00A74121 /* ConstraintDSL.swift in Sources */,
 				E300A25F21B23B0C00A74121 /* ConstraintMakerEditable.swift in Sources */,
 				E300A25421B23B0C00A74121 /* ConstraintMakerExtendable.swift in Sources */,
 				E300A28521B23FBE00A74121 /* IQTextView.swift in Sources */,
+				E32D1F5321B2D1D200B3A6AA /* StorageManager.m in Sources */,
 				E300A2A221B2565A00A74121 /* MenuItemNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

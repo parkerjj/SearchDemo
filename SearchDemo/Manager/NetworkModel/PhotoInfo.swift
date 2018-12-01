@@ -20,6 +20,7 @@ struct PhotoInfo : Codable {
     let photoURL        : PhotoURL
     
     
+    
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: PhotoResultCodingKeys.self)
         

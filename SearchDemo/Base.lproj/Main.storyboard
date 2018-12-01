@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SearchDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="SearchDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -40,7 +40,7 @@
                                     <outlet property="_widthConstraint" destination="2L4-7x-1Km" id="SER-Mm-J12"/>
                                 </connections>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lV6-IV-BDW" customClass="SDScrolledCollectionView" customModule="SearchDemo" customModuleProvider="target">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lV6-IV-BDW" customClass="SDScrolledCollectionView" customModule="SearchDemo" customModuleProvider="target">
                                 <rect key="frame" x="-162.5" y="150" width="700" height="160"/>
                                 <color key="backgroundColor" red="0.58039215686274503" green="0.87058823529411766" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -68,7 +68,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="rnv-2I-2hz"/>
                                 </connections>
                             </collectionView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="EmF-h0-THQ" customClass="SDScrolledCollectionView" customModule="SearchDemo" customModuleProvider="target">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="EmF-h0-THQ" customClass="SDScrolledCollectionView" customModule="SearchDemo" customModuleProvider="target">
                                 <rect key="frame" x="-162.5" y="80" width="700" height="160"/>
                                 <color key="backgroundColor" red="0.18823529411764706" green="0.6470588235294118" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -120,11 +120,41 @@
                         <outlet property="bannerView2" destination="lV6-IV-BDW" id="7v4-lJ-0t8"/>
                         <outlet property="historyView" destination="j8a-td-bI2" id="je5-eu-TJe"/>
                         <outlet property="searchButton" destination="JXe-jO-eft" id="gUi-Of-pcy"/>
+                        <segue destination="cxj-kw-eMj" kind="presentation" identifier="Main2Fall" id="2Jk-uF-hwe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="140" y="123.68815592203899"/>
+        </scene>
+        <!--Fall View Controller-->
+        <scene sceneID="WJP-sg-6HO">
+            <objects>
+                <viewController id="cxj-kw-eMj" customClass="FallViewController" customModule="SearchDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tUU-cZ-CzJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HA2-7U-iTk">
+                                <rect key="frame" x="164" y="296" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="backButtonClickedWithSender:" destination="cxj-kw-eMj" eventType="touchUpInside" id="eB7-OO-AMW"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HA2-7U-iTk" firstAttribute="centerX" secondItem="tUU-cZ-CzJ" secondAttribute="centerX" id="6Xl-V4-yXr"/>
+                            <constraint firstItem="HA2-7U-iTk" firstAttribute="top" secondItem="DnO-sC-Aan" secondAttribute="top" constant="276" id="SgP-bx-MuS"/>
+                            <constraint firstItem="HA2-7U-iTk" firstAttribute="leading" secondItem="DnO-sC-Aan" secondAttribute="leading" constant="164" id="r4a-Az-d4k"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DnO-sC-Aan"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KUe-nL-tC4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1274" y="124"/>
         </scene>
     </scenes>
     <resources>

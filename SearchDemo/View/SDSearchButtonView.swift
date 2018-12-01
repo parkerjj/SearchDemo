@@ -55,8 +55,6 @@ class SDSearchButtonView : UIView {
         _magnGlassButton = SDVibrantButton(frame: CGRect(x: margin, y: margin, width: self.frame.size.width - 2*margin, height: self.frame.size.height - 2*margin), style: SDVibrantButtonStyleInvert)
         _magnGlassButton?.cornerRadius = (_magnGlassButton?.frame.size.height)!/2.0
         _magnGlassButton?.vibrancyEffect = UIVibrancyEffect(blurEffect: UIBlurEffect(style: .extraLight))
-//        _magnGlassButton?.text = "TESt"
-//        _magnGlassButton?.setImage(UIImage(named: "MagnifyingGlass"), for: .normal)
         _magnGlassButton?.icon = UIImage(named: "MagnifyingGlass")!
         _magnGlassButton?.addTarget(self, action: #selector(SDSearchButtonView.searchButtonClicked(sender:)), for: .touchUpInside)
 
@@ -75,7 +73,7 @@ class SDSearchButtonView : UIView {
         if _textField.constraints.count == 0 {
             // Add TextField Layout
             _textField.snp.makeConstraints { (maker) in
-                maker.left.equalTo(_magnGlassButton!.snp.right).inset(0)
+                maker.left.equalTo(_magnGlassButton!.snp.right).inset(-10)
                 maker.right.equalTo(self).inset(15)
                 maker.height.equalTo(_magnGlassButton!)
                 maker.top.equalTo(_magnGlassButton!.snp.top)
@@ -142,6 +140,11 @@ class SDSearchButtonView : UIView {
 extension SDSearchButtonView {
     @objc func searchButtonClicked( sender : Any) {
         delegate?.searchButtonClicked(button: self)
+    }
+    
+    func clearTextField () {
+        _textField.text = ""
+        _textField.resignFirstResponder()
     }
     
     func startLoading(){

@@ -13,6 +13,9 @@
 // Categroy
 #import "UIColor+Utility.h"
 
+// Manager
+#import "StorageManager.h"
+
 // Custom View
 #import "AnimatedMenuScene.h"
 #import "MenuItemNode.h"

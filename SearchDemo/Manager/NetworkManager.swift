@@ -53,7 +53,7 @@ extension NetworkManager  {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue(kAPIKey, forHTTPHeaderField: "Authorization")
-
+        request.timeoutInterval = 10.0
         
         // Begin a data task
         dataTask = session.dataTask(with: request) { data, response, error in
@@ -68,6 +68,9 @@ extension NetworkManager  {
                 let jsonDecoder = JSONDecoder()
                 let modelObject = try? jsonDecoder.decode(T.self, from: data)
                 guard (modelObject != nil) else {
+                    DispatchQueue.main.async {
+                        completion(-1 , nil)
+                    }
                     return
                 }
                 
