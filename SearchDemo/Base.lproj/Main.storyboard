@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +13,68 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SearchDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="lFT-Z4-p1d">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ili-yU-kLD" customClass="SDGradientView" customModule="SearchDemo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="90" width="375" height="117"/>
+                                <color key="backgroundColor" red="0.92153996230000002" green="0.2765650194" blue="0.23707689200000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j8a-td-bI2">
+                                <rect key="frame" x="167.5" y="537" width="40" height="10"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="10" placeholder="YES" id="W22-hC-Srd"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JXe-jO-eft" customClass="SDSearchButtonView" customModule="SearchDemo" customModuleProvider="target">
+                                <rect key="frame" x="157.5" y="507" width="60" height="60"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="2L4-7x-1Km"/>
+                                    <constraint firstAttribute="height" constant="60" id="lF9-HP-sip"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="_bottomConstraint" destination="B6D-EC-UqK" id="UD2-vK-xaT"/>
+                                    <outlet property="_widthConstraint" destination="2L4-7x-1Km" id="SER-Mm-J12"/>
+                                </connections>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="lFT-Z4-p1d" firstAttribute="trailing" secondItem="Ili-yU-kLD" secondAttribute="trailing" id="0NS-cD-zXw"/>
+                            <constraint firstItem="Ili-yU-kLD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="8kq-Jz-Jt2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="JXe-jO-eft" secondAttribute="bottom" constant="100" id="B6D-EC-UqK"/>
+                            <constraint firstItem="j8a-td-bI2" firstAttribute="trailing" secondItem="JXe-jO-eft" secondAttribute="trailing" constant="-10" id="Bpf-Hw-5Cr"/>
+                            <constraint firstItem="lFT-Z4-p1d" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="F5x-fg-Y97"/>
+                            <constraint firstItem="Ili-yU-kLD" firstAttribute="centerX" secondItem="JXe-jO-eft" secondAttribute="centerX" id="Kvs-mK-oNe"/>
+                            <constraint firstAttribute="trailing" secondItem="Ili-yU-kLD" secondAttribute="trailing" id="LUL-3s-slU"/>
+                            <constraint firstAttribute="bottom" secondItem="Ili-yU-kLD" secondAttribute="bottom" constant="460" id="YW4-fw-Kei"/>
+                            <constraint firstItem="j8a-td-bI2" firstAttribute="leading" secondItem="JXe-jO-eft" secondAttribute="leading" constant="10" id="Ypg-6s-Iz6"/>
+                            <constraint firstItem="j8a-td-bI2" firstAttribute="top" secondItem="JXe-jO-eft" secondAttribute="bottom" constant="-30" id="nIF-NZ-1MH"/>
+                            <constraint firstItem="lFT-Z4-p1d" firstAttribute="leading" secondItem="Ili-yU-kLD" secondAttribute="leading" id="qXE-dh-X4f"/>
+                            <constraint firstItem="lFT-Z4-p1d" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="t5k-9M-m4c"/>
+                            <constraint firstItem="Ili-yU-kLD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="70" id="vbk-Lj-TM7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="bannerView" destination="Ili-yU-kLD" id="6BR-7d-dHS"/>
+                        <outlet property="historyView" destination="j8a-td-bI2" id="je5-eu-TJe"/>
+                        <outlet property="searchButton" destination="JXe-jO-eft" id="gUi-Of-pcy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="140" y="123.68815592203899"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Background" width="1920" height="1276"/>
+    </resources>
 </document>

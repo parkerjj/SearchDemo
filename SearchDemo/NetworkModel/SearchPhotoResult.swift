@@ -111,30 +111,4 @@ struct SearchPhotoResult : MotherResult  {
         
     
     
-    
-//    {
-//    "total_results":8285,
-//    "page":1,
-//    "per_page":15,
-//    "photos":[
-//    {
-//    "id":109919,
-//    "width":6000,
-//    "height":3376,
-//    "url":"https://www.pexels.com/photo/people-brasil-guys-avpaulista-109919/",
-//    "photographer":"Kaique Rocha",
-//    "photographer_url":"http://api-server.pexels.com/@kaiquestr",
-//    "src":{
-//    "original":"https://images.pexels.com/photos/109919/pexels-photo-109919.jpeg",
-//    "large2x":"https://images.pexels.com/photos/109919/pexels-photo-109919.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-//    "large":"https://images.pexels.com/photos/109919/pexels-photo-109919.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-//    "medium":"https://images.pexels.com/photos/109919/pexels-photo-109919.jpeg?auto=compress&cs=tinysrgb&h=350",
-//    "small":"https://images.pexels.com/photos/109919/pexels-photo-109919.jpeg?auto=compress&cs=tinysrgb&h=130",
-//    "portrait":"https://images.pexels.com/photos/109919/pexels-photo-109919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
-//    "square":"https://images.pexels.com/photos/109919/pexels-photo-109919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=1200",
-//    "landscape":"https://images.pexels.com/photos/109919/pexels-photo-109919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
-//    "tiny":"https://images.pexels.com/photos/109919/pexels-photo-109919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=200&w=280"
-//    }
-//    },
-    
 }
