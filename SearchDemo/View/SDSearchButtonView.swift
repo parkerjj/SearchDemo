@@ -23,7 +23,7 @@ enum SDSearchButtonTransform {
 class SDSearchButtonView : UIView {
 
     private let _textField          = UITextField(frame: CGRect())
-    private let _magnGlassButton    = UIButton(type: UIButton.ButtonType.custom)
+    private var _magnGlassButton    : SDVibrantButton?
     @IBOutlet var _widthConstraint  : NSLayoutConstraint?
     @IBOutlet var _bottomConstraint : NSLayoutConstraint?
     
@@ -46,19 +46,25 @@ class SDSearchButtonView : UIView {
     
     
     private func buildRootView(){
-        self.backgroundColor = UIColor.blue
+        self.backgroundColor = UIColor.init(white: 1.0, alpha: 0.6)
         self.layer.cornerRadius = self.frame.size.width/2.0
         
         
-        let margin : CGFloat = 10.0
+        let margin : CGFloat = 0.5
         // Setup Button
-        _magnGlassButton.frame = CGRect(x: margin, y: margin, width: self.frame.size.width - 2*margin, height: self.frame.size.height - 2*margin)
-        _magnGlassButton.setImage(UIImage(named: "MagnifyingGlass"), for: .normal)
-        _magnGlassButton.addTarget(self, action: #selector(SDSearchButtonView.searchButtonClicked(sender:)), for: .touchUpInside)
-        self.addSubview(_magnGlassButton)
+        _magnGlassButton = SDVibrantButton(frame: CGRect(x: margin, y: margin, width: self.frame.size.width - 2*margin, height: self.frame.size.height - 2*margin), style: SDVibrantButtonStyleInvert)
+        _magnGlassButton?.cornerRadius = (_magnGlassButton?.frame.size.height)!/2.0
+        _magnGlassButton?.vibrancyEffect = UIVibrancyEffect(blurEffect: UIBlurEffect(style: .extraLight))
+//        _magnGlassButton?.text = "TESt"
+//        _magnGlassButton?.setImage(UIImage(named: "MagnifyingGlass"), for: .normal)
+        _magnGlassButton?.icon = UIImage(named: "MagnifyingGlass")!
+        _magnGlassButton?.addTarget(self, action: #selector(SDSearchButtonView.searchButtonClicked(sender:)), for: .touchUpInside)
+
+        self.addSubview(_magnGlassButton!)
         
         // Setup TextField
-        _textField.backgroundColor = UIColor.red
+        _textField.backgroundColor = UIColor.clear
+        _textField.font = UIFont.systemFont(ofSize: 28)
         self.addSubview(_textField)
     }
     
@@ -69,12 +75,11 @@ class SDSearchButtonView : UIView {
         if _textField.constraints.count == 0 {
             // Add TextField Layout
             _textField.snp.makeConstraints { (maker) in
-                maker.left.equalTo(_magnGlassButton.snp.right).inset(0)
+                maker.left.equalTo(_magnGlassButton!.snp.right).inset(0)
                 maker.right.equalTo(self).inset(15)
-                maker.height.equalTo(_magnGlassButton)
-                maker.top.equalTo(_magnGlassButton.snp.top)
+                maker.height.equalTo(_magnGlassButton!)
+                maker.top.equalTo(_magnGlassButton!.snp.top)
             }
-        
         }
     }
     
@@ -97,6 +102,7 @@ class SDSearchButtonView : UIView {
         }
         
         let expendBottomValue : CGFloat = UIScreen.main.bounds.size.height * 0.6
+        
         UIView.animate(withDuration: 0.5, animations: {
             self.superview?.layoutIfNeeded()
         }) { (finished) in
@@ -132,9 +138,19 @@ class SDSearchButtonView : UIView {
 }
 
 
+// MARK: Delegate & Control
 extension SDSearchButtonView {
     @objc func searchButtonClicked( sender : Any) {
         delegate?.searchButtonClicked(button: self)
+    }
+    
+    func startLoading(){
+        _magnGlassButton?.startLoading()
+    }
+    
+    
+    func stopLoading(){
+        _magnGlassButton?.stopLoading()
     }
 }
 

@@ -10,7 +10,7 @@ import Foundation
 
 
 
-let kHostURL = "https://api.pexels.com/v1/"
+let kHostURL = "http://api.pexels.com/v1/"
 let kAPIKey = "563492ad6f91700001000001418e83d2a1f84cc0a33cc1ec39b3ef57"
 
 

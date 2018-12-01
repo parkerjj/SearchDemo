@@ -18,53 +18,106 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="lFT-Z4-p1d">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BG" translatesAutoresizingMaskIntoConstraints="NO" id="lFT-Z4-p1d">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ili-yU-kLD" customClass="SDGradientView" customModule="SearchDemo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="90" width="375" height="117"/>
-                                <color key="backgroundColor" red="0.92153996230000002" green="0.2765650194" blue="0.23707689200000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j8a-td-bI2">
-                                <rect key="frame" x="167.5" y="537" width="40" height="10"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j8a-td-bI2" customClass="SKView">
+                                <rect key="frame" x="162.5" y="537" width="50" height="10"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" placeholder="YES" id="W22-hC-Srd"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JXe-jO-eft" customClass="SDSearchButtonView" customModule="SearchDemo" customModuleProvider="target">
-                                <rect key="frame" x="157.5" y="507" width="60" height="60"/>
+                                <rect key="frame" x="152.5" y="497" width="70" height="70"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="2L4-7x-1Km"/>
-                                    <constraint firstAttribute="height" constant="60" id="lF9-HP-sip"/>
+                                    <constraint firstAttribute="width" constant="70" id="2L4-7x-1Km"/>
+                                    <constraint firstAttribute="height" constant="70" id="lF9-HP-sip"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="_bottomConstraint" destination="B6D-EC-UqK" id="UD2-vK-xaT"/>
                                     <outlet property="_widthConstraint" destination="2L4-7x-1Km" id="SER-Mm-J12"/>
                                 </connections>
                             </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lV6-IV-BDW" customClass="SDScrolledCollectionView" customModule="SearchDemo" customModuleProvider="target">
+                                <rect key="frame" x="-162.5" y="150" width="700" height="160"/>
+                                <color key="backgroundColor" red="0.58039215686274503" green="0.87058823529411766" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="700" id="BqE-Qj-xOT"/>
+                                    <constraint firstAttribute="height" constant="160" id="hWP-ua-9Ox"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="npJ-eM-mN0">
+                                    <size key="itemSize" width="140" height="140"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MainViewCollectionViewReuseId" id="QcN-Kg-Ibl" customClass="BaseCollectionViewCell" customModule="SearchDemo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="10" width="140" height="140"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="q6Q-3r-f63"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="rnv-2I-2hz"/>
+                                </connections>
+                            </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="EmF-h0-THQ" customClass="SDScrolledCollectionView" customModule="SearchDemo" customModuleProvider="target">
+                                <rect key="frame" x="-162.5" y="80" width="700" height="160"/>
+                                <color key="backgroundColor" red="0.18823529411764706" green="0.6470588235294118" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="9tc-6h-VGW"/>
+                                    <constraint firstAttribute="width" constant="700" id="WwV-3Q-mn4"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Uhl-sP-Qhd">
+                                    <size key="itemSize" width="140" height="140"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MainViewCollectionViewReuseId" id="4WM-J2-VTU" customClass="BaseCollectionViewCell" customModule="SearchDemo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="10" width="140" height="140"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="bPs-FK-B4J"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="jcl-CI-4tM"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="lFT-Z4-p1d" firstAttribute="trailing" secondItem="Ili-yU-kLD" secondAttribute="trailing" id="0NS-cD-zXw"/>
-                            <constraint firstItem="Ili-yU-kLD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="8kq-Jz-Jt2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="JXe-jO-eft" secondAttribute="bottom" constant="100" id="B6D-EC-UqK"/>
                             <constraint firstItem="j8a-td-bI2" firstAttribute="trailing" secondItem="JXe-jO-eft" secondAttribute="trailing" constant="-10" id="Bpf-Hw-5Cr"/>
+                            <constraint firstItem="lV6-IV-BDW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CVw-10-bJW"/>
                             <constraint firstItem="lFT-Z4-p1d" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="F5x-fg-Y97"/>
-                            <constraint firstItem="Ili-yU-kLD" firstAttribute="centerX" secondItem="JXe-jO-eft" secondAttribute="centerX" id="Kvs-mK-oNe"/>
-                            <constraint firstAttribute="trailing" secondItem="Ili-yU-kLD" secondAttribute="trailing" id="LUL-3s-slU"/>
-                            <constraint firstAttribute="bottom" secondItem="Ili-yU-kLD" secondAttribute="bottom" constant="460" id="YW4-fw-Kei"/>
+                            <constraint firstItem="lV6-IV-BDW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="130" id="OKG-Og-HSo"/>
+                            <constraint firstItem="lFT-Z4-p1d" firstAttribute="centerX" secondItem="j8a-td-bI2" secondAttribute="centerX" id="QoF-1n-hxo"/>
                             <constraint firstItem="j8a-td-bI2" firstAttribute="leading" secondItem="JXe-jO-eft" secondAttribute="leading" constant="10" id="Ypg-6s-Iz6"/>
+                            <constraint firstItem="EmF-h0-THQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="aeq-2K-WvZ"/>
+                            <constraint firstItem="lFT-Z4-p1d" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cGc-fd-WaG"/>
                             <constraint firstItem="j8a-td-bI2" firstAttribute="top" secondItem="JXe-jO-eft" secondAttribute="bottom" constant="-30" id="nIF-NZ-1MH"/>
-                            <constraint firstItem="lFT-Z4-p1d" firstAttribute="leading" secondItem="Ili-yU-kLD" secondAttribute="leading" id="qXE-dh-X4f"/>
+                            <constraint firstItem="EmF-h0-THQ" firstAttribute="centerX" secondItem="j8a-td-bI2" secondAttribute="centerX" id="r1I-R5-mUQ"/>
+                            <constraint firstAttribute="trailing" secondItem="lFT-Z4-p1d" secondAttribute="trailing" id="sTa-wm-zKd"/>
                             <constraint firstItem="lFT-Z4-p1d" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="t5k-9M-m4c"/>
-                            <constraint firstItem="Ili-yU-kLD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="70" id="vbk-Lj-TM7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="bannerView" destination="Ili-yU-kLD" id="6BR-7d-dHS"/>
+                        <outlet property="bannerView1" destination="EmF-h0-THQ" id="mot-79-NcT"/>
+                        <outlet property="bannerView2" destination="lV6-IV-BDW" id="7v4-lJ-0t8"/>
                         <outlet property="historyView" destination="j8a-td-bI2" id="je5-eu-TJe"/>
                         <outlet property="searchButton" destination="JXe-jO-eft" id="gUi-Of-pcy"/>
                     </connections>
@@ -75,6 +128,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Background" width="1920" height="1276"/>
+        <image name="BG" width="1242" height="2688"/>
     </resources>
 </document>

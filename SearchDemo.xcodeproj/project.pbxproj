@@ -61,7 +61,20 @@
 		E300A29421B23FBF00A74121 /* IQUIView+Hierarchy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E300A28321B23FBE00A74121 /* IQUIView+Hierarchy.swift */; };
 		E300A29521B23FBF00A74121 /* IQNSArray+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = E300A28421B23FBE00A74121 /* IQNSArray+Sort.swift */; };
 		E300A29721B253F600A74121 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E300A29621B253F600A74121 /* SpriteKit.framework */; };
-		E300A29921B2541700A74121 /* HistoryNodeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E300A29821B2541700A74121 /* HistoryNodeItem.swift */; };
+		E300A2A121B2565A00A74121 /* AnimatedMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E300A29B21B2565A00A74121 /* AnimatedMenuScene.m */; };
+		E300A2A221B2565A00A74121 /* MenuItemNode.m in Sources */ = {isa = PBXBuildFile; fileRef = E300A29C21B2565A00A74121 /* MenuItemNode.m */; };
+		E300A2A321B2565A00A74121 /* DSMultilineLabelNode.m in Sources */ = {isa = PBXBuildFile; fileRef = E300A29D21B2565A00A74121 /* DSMultilineLabelNode.m */; };
+		E300A2A921B2572600A74121 /* UIColor+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = E300A2A821B2572600A74121 /* UIColor+Utility.m */; };
+		E32D1BA521B280EB00B3A6AA /* SDVibrantButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E32D1BA421B280EB00B3A6AA /* SDVibrantButton.m */; };
+		E32D1BAD21B2820500B3A6AA /* MMMaterialDesignSpinner.m in Sources */ = {isa = PBXBuildFile; fileRef = E32D1BAB21B2820500B3A6AA /* MMMaterialDesignSpinner.m */; };
+		E32D1BAF21B28A2F00B3A6AA /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32D1BAE21B28A2F00B3A6AA /* BaseCollectionViewCell.swift */; };
+		E32D1F3821B294BE00B3A6AA /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E32D1F3121B294B500B3A6AA /* SDWebImage.framework */; };
+		E32D1F3A21B294C800B3A6AA /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E32D1F3921B294C800B3A6AA /* ImageIO.framework */; };
+		E32D1F3E21B29D8300B3A6AA /* CuratedPhotoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32D1F3D21B29D8300B3A6AA /* CuratedPhotoResult.swift */; };
+		E32D1F4021B29E2F00B3A6AA /* PhotoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32D1F3F21B29E2F00B3A6AA /* PhotoInfo.swift */; };
+		E32D1F4221B2A4CF00B3A6AA /* SDScrolledCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32D1F4121B2A4CF00B3A6AA /* SDScrolledCollectionView.swift */; };
+		E32D1F4321B2B7A800B3A6AA /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E32D1F3121B294B500B3A6AA /* SDWebImage.framework */; };
+		E32D1F4421B2B7A800B3A6AA /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E32D1F3121B294B500B3A6AA /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E3C3442521AFAE2E000FC71C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C3442421AFAE2E000FC71C /* AppDelegate.swift */; };
 		E3C3442721AFAE2E000FC71C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C3442621AFAE2E000FC71C /* ViewController.swift */; };
 		E3C3442A21AFAE2E000FC71C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3C3442821AFAE2E000FC71C /* Main.storyboard */; };
@@ -75,6 +88,62 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E32D1F2C21B294B500B3A6AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E32D1F2321B294B500B3A6AA /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 53761325155AD0D5005750A4;
+			remoteInfo = "SDWebImage iOS static";
+		};
+		E32D1F2E21B294B500B3A6AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E32D1F2321B294B500B3A6AA /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4314D1991D0E0E3B004B36C9;
+			remoteInfo = "SDWebImage watchOS static";
+		};
+		E32D1F3021B294B500B3A6AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E32D1F2321B294B500B3A6AA /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4A2CADFF1AB4BB5300B6BC39;
+			remoteInfo = "SDWebImage iOS";
+		};
+		E32D1F3221B294B500B3A6AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E32D1F2321B294B500B3A6AA /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 00733A4C1BC487C000A5A117;
+			remoteInfo = "SDWebImage tvOS";
+		};
+		E32D1F3421B294B500B3A6AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E32D1F2321B294B500B3A6AA /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 431BB7031D06D2C1006A3455;
+			remoteInfo = "SDWebImage watchOS";
+		};
+		E32D1F3621B294B500B3A6AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E32D1F2321B294B500B3A6AA /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4397D2F21D0DDD8C00BB2784;
+			remoteInfo = "SDWebImage OSX";
+		};
+		E32D1F3B21B294D400B3A6AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E32D1F2321B294B500B3A6AA /* SDWebImage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4A2CADFE1AB4BB5300B6BC39;
+			remoteInfo = "SDWebImage iOS";
+		};
+		E32D1F4521B2B7A800B3A6AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E32D1F2321B294B500B3A6AA /* SDWebImage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4A2CADFE1AB4BB5300B6BC39;
+			remoteInfo = "SDWebImage iOS";
+		};
 		E3C3443621AFAE30000FC71C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E3C3441921AFAE2E000FC71C /* Project object */;
@@ -91,6 +160,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				E32D1F4421B2B7A800B3A6AA /* SDWebImage.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,7 +226,27 @@
 		E300A28321B23FBE00A74121 /* IQUIView+Hierarchy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIView+Hierarchy.swift"; sourceTree = "<group>"; };
 		E300A28421B23FBE00A74121 /* IQNSArray+Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQNSArray+Sort.swift"; sourceTree = "<group>"; };
 		E300A29621B253F600A74121 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
-		E300A29821B2541700A74121 /* HistoryNodeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNodeItem.swift; sourceTree = "<group>"; };
+		E300A29B21B2565A00A74121 /* AnimatedMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatedMenuScene.m; sourceTree = "<group>"; };
+		E300A29C21B2565A00A74121 /* MenuItemNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItemNode.m; sourceTree = "<group>"; };
+		E300A29D21B2565A00A74121 /* DSMultilineLabelNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSMultilineLabelNode.m; sourceTree = "<group>"; };
+		E300A29E21B2565A00A74121 /* AnimatedMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedMenuScene.h; sourceTree = "<group>"; };
+		E300A29F21B2565A00A74121 /* MenuItemNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItemNode.h; sourceTree = "<group>"; };
+		E300A2A021B2565A00A74121 /* DSMultilineLabelNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSMultilineLabelNode.h; sourceTree = "<group>"; };
+		E300A2A721B2572600A74121 /* UIColor+Utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utility.h"; sourceTree = "<group>"; };
+		E300A2A821B2572600A74121 /* UIColor+Utility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utility.m"; sourceTree = "<group>"; };
+		E300A2AA21B257A600A74121 /* SearchDeme-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SearchDeme-Bridging-Header.h"; sourceTree = "<group>"; };
+		E32D1BA321B280EB00B3A6AA /* SDVibrantButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDVibrantButton.h; sourceTree = "<group>"; };
+		E32D1BA421B280EB00B3A6AA /* SDVibrantButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDVibrantButton.m; sourceTree = "<group>"; };
+		E32D1BA721B2820500B3A6AA /* MMMaterialDesignSpinner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMaterialDesignSpinner.h; sourceTree = "<group>"; };
+		E32D1BA921B2820500B3A6AA /* ActivityTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityTracking.h; sourceTree = "<group>"; };
+		E32D1BAA21B2820500B3A6AA /* UIRefreshControl+MaterialDesignSpinner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIRefreshControl+MaterialDesignSpinner.h"; sourceTree = "<group>"; };
+		E32D1BAB21B2820500B3A6AA /* MMMaterialDesignSpinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMaterialDesignSpinner.m; sourceTree = "<group>"; };
+		E32D1BAE21B28A2F00B3A6AA /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		E32D1F2321B294B500B3A6AA /* SDWebImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDWebImage.xcodeproj; path = SDWebImage/SDWebImage.xcodeproj; sourceTree = "<group>"; };
+		E32D1F3921B294C800B3A6AA /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		E32D1F3D21B29D8300B3A6AA /* CuratedPhotoResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuratedPhotoResult.swift; sourceTree = "<group>"; };
+		E32D1F3F21B29E2F00B3A6AA /* PhotoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfo.swift; sourceTree = "<group>"; };
+		E32D1F4121B2A4CF00B3A6AA /* SDScrolledCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDScrolledCollectionView.swift; sourceTree = "<group>"; };
 		E3C3442121AFAE2E000FC71C /* SearchDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C3442421AFAE2E000FC71C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3C3442621AFAE2E000FC71C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -178,6 +268,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E32D1F4321B2B7A800B3A6AA /* SDWebImage.framework in Frameworks */,
+				E32D1F3A21B294C800B3A6AA /* ImageIO.framework in Frameworks */,
+				E32D1F3821B294BE00B3A6AA /* SDWebImage.framework in Frameworks */,
 				E300A29721B253F600A74121 /* SpriteKit.framework in Frameworks */,
 				A52D2F5CB64FAC66E822FEDC /* Pods_SearchDemo.framework in Frameworks */,
 			);
@@ -196,6 +289,7 @@
 		C1B556A44DE6207955BB8B35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E32D1F3921B294C800B3A6AA /* ImageIO.framework */,
 				E300A29621B253F600A74121 /* SpriteKit.framework */,
 				74699FF22482FF0B3DCDEABC /* Pods_SearchDemo.framework */,
 			);
@@ -214,6 +308,9 @@
 		E300A22421B23AFA00A74121 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				E32D1F2321B294B500B3A6AA /* SDWebImage.xcodeproj */,
+				E32D1BA621B2820500B3A6AA /* MMMaterialDesignSpinner */,
+				E300A29A21B2565A00A74121 /* AnimatedMenuPool */,
 				E300A26D21B23FBE00A74121 /* IQKeyboardManagerSwift */,
 				E300A22521B23B0C00A74121 /* SnapKit */,
 			);
@@ -327,6 +424,45 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
+		E300A29A21B2565A00A74121 /* AnimatedMenuPool */ = {
+			isa = PBXGroup;
+			children = (
+				E300A2A721B2572600A74121 /* UIColor+Utility.h */,
+				E300A2A821B2572600A74121 /* UIColor+Utility.m */,
+				E300A29B21B2565A00A74121 /* AnimatedMenuScene.m */,
+				E300A29C21B2565A00A74121 /* MenuItemNode.m */,
+				E300A29D21B2565A00A74121 /* DSMultilineLabelNode.m */,
+				E300A29E21B2565A00A74121 /* AnimatedMenuScene.h */,
+				E300A29F21B2565A00A74121 /* MenuItemNode.h */,
+				E300A2A021B2565A00A74121 /* DSMultilineLabelNode.h */,
+			);
+			path = AnimatedMenuPool;
+			sourceTree = "<group>";
+		};
+		E32D1BA621B2820500B3A6AA /* MMMaterialDesignSpinner */ = {
+			isa = PBXGroup;
+			children = (
+				E32D1BA721B2820500B3A6AA /* MMMaterialDesignSpinner.h */,
+				E32D1BA921B2820500B3A6AA /* ActivityTracking.h */,
+				E32D1BAA21B2820500B3A6AA /* UIRefreshControl+MaterialDesignSpinner.h */,
+				E32D1BAB21B2820500B3A6AA /* MMMaterialDesignSpinner.m */,
+			);
+			path = MMMaterialDesignSpinner;
+			sourceTree = "<group>";
+		};
+		E32D1F2421B294B500B3A6AA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E32D1F2D21B294B500B3A6AA /* libSDWebImage iOS static.a */,
+				E32D1F2F21B294B500B3A6AA /* libSDWebImage watchOS static.a */,
+				E32D1F3121B294B500B3A6AA /* SDWebImage.framework */,
+				E32D1F3321B294B500B3A6AA /* SDWebImage.framework */,
+				E32D1F3521B294B500B3A6AA /* SDWebImage.framework */,
+				E32D1F3721B294B500B3A6AA /* SDWebImage.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E3C3441821AFAE2E000FC71C = {
 			isa = PBXGroup;
 			children = (
@@ -359,6 +495,7 @@
 				E3C3442821AFAE2E000FC71C /* Main.storyboard */,
 				E3C3442B21AFAE30000FC71C /* Assets.xcassets */,
 				E3C3442D21AFAE30000FC71C /* LaunchScreen.storyboard */,
+				E300A2AA21B257A600A74121 /* SearchDeme-Bridging-Header.h */,
 				E3C3443021AFAE30000FC71C /* Info.plist */,
 			);
 			path = SearchDemo;
@@ -386,6 +523,8 @@
 			children = (
 				E3C3449721AFBD19000FC71C /* MotherResult.swift */,
 				E3C3449921AFBE71000FC71C /* SearchPhotoResult.swift */,
+				E32D1F3D21B29D8300B3A6AA /* CuratedPhotoResult.swift */,
+				E32D1F3F21B29E2F00B3A6AA /* PhotoInfo.swift */,
 			);
 			path = NetworkModel;
 			sourceTree = "<group>";
@@ -395,7 +534,10 @@
 			children = (
 				E3D0937521B11BD20007D7FA /* SDGradientView.swift */,
 				E300A22221B173D500A74121 /* SDSearchButtonView.swift */,
-				E300A29821B2541700A74121 /* HistoryNodeItem.swift */,
+				E32D1BAE21B28A2F00B3A6AA /* BaseCollectionViewCell.swift */,
+				E32D1BA321B280EB00B3A6AA /* SDVibrantButton.h */,
+				E32D1BA421B280EB00B3A6AA /* SDVibrantButton.m */,
+				E32D1F4121B2A4CF00B3A6AA /* SDScrolledCollectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -416,6 +558,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				E32D1F3C21B294D400B3A6AA /* PBXTargetDependency */,
+				E32D1F4621B2B7A800B3A6AA /* PBXTargetDependency */,
 			);
 			name = SearchDemo;
 			productName = SearchDemo;
@@ -470,6 +614,12 @@
 			mainGroup = E3C3441821AFAE2E000FC71C;
 			productRefGroup = E3C3442221AFAE2E000FC71C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E32D1F2421B294B500B3A6AA /* Products */;
+					ProjectRef = E32D1F2321B294B500B3A6AA /* SDWebImage.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				E3C3442021AFAE2E000FC71C /* SearchDemo */,
@@ -477,6 +627,51 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E32D1F2D21B294B500B3A6AA /* libSDWebImage iOS static.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libSDWebImage iOS static.a";
+			remoteRef = E32D1F2C21B294B500B3A6AA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E32D1F2F21B294B500B3A6AA /* libSDWebImage watchOS static.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libSDWebImage watchOS static.a";
+			remoteRef = E32D1F2E21B294B500B3A6AA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E32D1F3121B294B500B3A6AA /* SDWebImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SDWebImage.framework;
+			remoteRef = E32D1F3021B294B500B3A6AA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E32D1F3321B294B500B3A6AA /* SDWebImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SDWebImage.framework;
+			remoteRef = E32D1F3221B294B500B3A6AA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E32D1F3521B294B500B3A6AA /* SDWebImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SDWebImage.framework;
+			remoteRef = E32D1F3421B294B500B3A6AA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E32D1F3721B294B500B3A6AA /* SDWebImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SDWebImage.framework;
+			remoteRef = E32D1F3621B294B500B3A6AA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E3C3441F21AFAE2E000FC71C /* Resources */ = {
@@ -533,17 +728,21 @@
 				E300A26C21B23B0C00A74121 /* ConstraintMakerRelatable.swift in Sources */,
 				E3C3449821AFBD19000FC71C /* MotherResult.swift in Sources */,
 				E3D0937621B11BD20007D7FA /* SDGradientView.swift in Sources */,
+				E32D1BAF21B28A2F00B3A6AA /* BaseCollectionViewCell.swift in Sources */,
 				E300A29021B23FBF00A74121 /* IQKeyboardManager.swift in Sources */,
+				E32D1BA521B280EB00B3A6AA /* SDVibrantButton.m in Sources */,
 				E300A29321B23FBF00A74121 /* IQUITextFieldView+Additions.swift in Sources */,
 				E300A26421B23B0C00A74121 /* ConstraintItem.swift in Sources */,
 				E300A28621B23FBE00A74121 /* IQPreviousNextView.swift in Sources */,
 				E300A26B21B23B0C00A74121 /* ConstraintLayoutSupportDSL.swift in Sources */,
+				E32D1BAD21B2820500B3A6AA /* MMMaterialDesignSpinner.m in Sources */,
 				E300A25221B23B0C00A74121 /* ConstraintMakerFinalizable.swift in Sources */,
 				E300A25B21B23B0C00A74121 /* ConstraintLayoutSupport.swift in Sources */,
 				E300A24B21B23B0C00A74121 /* LayoutConstraintItem.swift in Sources */,
 				E300A25721B23B0C00A74121 /* ConstraintConfig.swift in Sources */,
 				E300A29221B23FBF00A74121 /* IQUIViewController+Additions.swift in Sources */,
 				E300A29121B23FBF00A74121 /* IQUIScrollView+Additions.swift in Sources */,
+				E32D1F4021B29E2F00B3A6AA /* PhotoInfo.swift in Sources */,
 				E300A25121B23B0C00A74121 /* ConstraintInsets.swift in Sources */,
 				E300A25821B23B0C00A74121 /* UILayoutSupport+Extensions.swift in Sources */,
 				E300A26621B23B0C00A74121 /* Debugging.swift in Sources */,
@@ -559,6 +758,8 @@
 				E300A28F21B23FBF00A74121 /* IQKeyboardReturnKeyHandler.swift in Sources */,
 				E3C3442721AFAE2E000FC71C /* ViewController.swift in Sources */,
 				E300A24A21B23B0C00A74121 /* ConstraintMultiplierTarget.swift in Sources */,
+				E300A2A121B2565A00A74121 /* AnimatedMenuScene.m in Sources */,
+				E32D1F3E21B29D8300B3A6AA /* CuratedPhotoResult.swift in Sources */,
 				E300A22321B173D500A74121 /* SDSearchButtonView.swift in Sources */,
 				E300A28721B23FBE00A74121 /* IQTitleBarButtonItem.swift in Sources */,
 				E300A29421B23FBF00A74121 /* IQUIView+Hierarchy.swift in Sources */,
@@ -568,25 +769,28 @@
 				E300A26921B23B0C00A74121 /* LayoutConstraint.swift in Sources */,
 				E300A26521B23B0C00A74121 /* Constraint.swift in Sources */,
 				E300A29521B23FBF00A74121 /* IQNSArray+Sort.swift in Sources */,
+				E300A2A321B2565A00A74121 /* DSMultilineLabelNode.m in Sources */,
 				E300A26121B23B0C00A74121 /* ConstraintRelation.swift in Sources */,
 				E300A28921B23FBF00A74121 /* IQToolbar.swift in Sources */,
+				E300A2A921B2572600A74121 /* UIColor+Utility.m in Sources */,
 				E300A26321B23B0C00A74121 /* ConstraintView+Extensions.swift in Sources */,
 				E300A28B21B23FBF00A74121 /* IQInvocation.swift in Sources */,
 				E300A26A21B23B0C00A74121 /* ConstraintLayoutGuide+Extensions.swift in Sources */,
 				E300A28A21B23FBF00A74121 /* IQUIView+IQKeyboardToolbar.swift in Sources */,
 				E300A25521B23B0C00A74121 /* ConstraintPriority.swift in Sources */,
+				E32D1F4221B2A4CF00B3A6AA /* SDScrolledCollectionView.swift in Sources */,
 				E300A25921B23B0C00A74121 /* ConstraintView.swift in Sources */,
 				E300A26721B23B0C00A74121 /* ConstraintRelatableTarget.swift in Sources */,
 				E300A25E21B23B0C00A74121 /* ConstraintOffsetTarget.swift in Sources */,
 				E300A24E21B23B0C00A74121 /* ConstraintAttributes.swift in Sources */,
 				E3C3449A21AFBE71000FC71C /* SearchPhotoResult.swift in Sources */,
-				E300A29921B2541700A74121 /* HistoryNodeItem.swift in Sources */,
 				E300A28821B23FBF00A74121 /* IQBarButtonItem.swift in Sources */,
 				E300A24C21B23B0C00A74121 /* ConstraintDescription.swift in Sources */,
 				E300A25321B23B0C00A74121 /* ConstraintDSL.swift in Sources */,
 				E300A25F21B23B0C00A74121 /* ConstraintMakerEditable.swift in Sources */,
 				E300A25421B23B0C00A74121 /* ConstraintMakerExtendable.swift in Sources */,
 				E300A28521B23FBE00A74121 /* IQTextView.swift in Sources */,
+				E300A2A221B2565A00A74121 /* MenuItemNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,6 +805,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E32D1F3C21B294D400B3A6AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SDWebImage iOS";
+			targetProxy = E32D1F3B21B294D400B3A6AA /* PBXContainerItemProxy */;
+		};
+		E32D1F4621B2B7A800B3A6AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SDWebImage iOS";
+			targetProxy = E32D1F4521B2B7A800B3A6AA /* PBXContainerItemProxy */;
+		};
 		E3C3443721AFAE30000FC71C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E3C3442021AFAE2E000FC71C /* SearchDemo */;
@@ -759,6 +973,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.IOFutureTech.SearchDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SearchDemo/SearchDeme-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -779,6 +994,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.IOFutureTech.SearchDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SearchDemo/SearchDeme-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
