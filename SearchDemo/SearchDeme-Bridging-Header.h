@@ -12,6 +12,7 @@
 
 // Categroy
 #import "UIColor+Utility.h"
+#import "UIImage+Blur.h"
 
 // Manager
 #import "StorageManager.h"
@@ -21,5 +22,6 @@
 #import "MenuItemNode.h"
 #import "DSMultilineLabelNode.h"
 #import "SDVibrantButton.h"
+#import "RZTransitions.h"
 
 #endif /* SearchDeme_Bridging_Header_h */

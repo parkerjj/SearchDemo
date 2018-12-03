@@ -265,7 +265,7 @@ extension MainViewController{
         searchButton.startLoading()
         
         
-        NetworkManager.shared.get(api: "search", params: ["query":keyWord], resultType: SearchPhotoResult.self) { (returnCode, result) in
+        NetworkManager.shared.get(api: "search", params: ["query":keyWord , "per_page":40 ], resultType: SearchPhotoResult.self) { (returnCode, result) in
             DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                 self.searchButton.stopLoading()
             })
@@ -275,19 +275,20 @@ extension MainViewController{
                 historyArray.insert(keyWord, at: 0)
                 
                 // Remove Duplicate
-                var result = [String]()
+                var tmpArray = [String]()
                 for value in historyArray {
-                    if result.contains(value) == false {
-                        result.append(value)
+                    if tmpArray.contains(value) == false {
+                        tmpArray.append(value)
                     }
                 }
-                historyArray = Array(result[0..<5])
+                historyArray = Array(tmpArray[0..<5])
                 
                 // Storage History Array
                 StorageManager.setLocalValueWithValue(historyArray as NSCopying, forKey: "HistoryArray")
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                    self.performSegue(withIdentifier: "Main2Fall", sender: result)
+                    let sender = ["Result" : result as Any, "KeyWord" : keyWord]
+                    self.performSegue(withIdentifier: "Main2Fall", sender: sender)
                 })
                 
             }
@@ -305,6 +306,12 @@ extension MainViewController : UIViewControllerTransitioningDelegate {
         controller.transitioningDelegate = self
         controller.modalPresentationStyle = .custom
         
+        if segue.identifier == "Main2Fall" {
+            let controller = (controller as! UINavigationController).topViewController as! FallViewController
+            let sender = sender as! [String : Any]
+            controller.dataResult = sender["Result"] as? SearchPhotoResult
+            controller.keyWord = sender["KeyWord"] as? String
+        }
         
     }
     

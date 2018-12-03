@@ -33,10 +33,10 @@ struct SearchPhotoResult : MotherResult  {
 
     
 
-    let totalResult     : Int
-    let page            : Int
-    let perPage         : Int
-    let photos          : [PhotoInfo]?
+    var totalResult     : Int
+    var page            : Int
+    var perPage         : Int
+    var photos          : [PhotoInfo]?
     
 
     enum SearchPhotoResultCodingKeys: String, CodingKey {

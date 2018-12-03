@@ -17,7 +17,6 @@ static NSString *DeselectAnimation = @"DeselectAnimation";
 @property (nonatomic, strong) SKFieldNode *magneticField;
 @property (nonatomic, assign) CGPoint startPoint;
 @property (nonatomic, assign) NSTimeInterval touchStartTime;
-@property (nonatomic, assign) BOOL moving;
 @property (nonatomic, strong) SKNode *selectedNode;
 @property (nonatomic, strong) NSMutableArray *selectedNodes;
 @end
@@ -191,7 +190,6 @@ static NSString *DeselectAnimation = @"DeselectAnimation";
 }
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    _moving = YES;
     UITouch *touch = [touches anyObject];
     CGPoint prePoint = [touch previousLocationInNode:self];
     CGPoint point = [touch locationInNode:self];
@@ -208,16 +206,12 @@ static NSString *DeselectAnimation = @"DeselectAnimation";
 }
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (!_moving)
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self];
+    SKNode *node = [self nodeAtPoint:location];
+    if (node)
     {
-        UITouch *touch = [touches anyObject];
-        CGPoint location = [touch locationInNode:self];
-        SKNode *node = [self nodeAtPoint:location];
-        if (node)
-        {
-            [self selectNode:node];
-        }
+        [self selectNode:node];
     }
-    _moving = NO;
 }
 @end
