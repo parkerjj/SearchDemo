@@ -48,7 +48,9 @@
         colorHex += 0x010202;
     }
     menuNode.strokeColor = menuNode.fillColor = [UIColor colorWithHex:colorHex alpha:1.0f];
-
+    menuNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:size/2.0];
+    menuNode.physicsBody.categoryBitMask = 1;
+    menuNode.physicsBody.contactTestBitMask = 1;
     
     
     return menuNode;

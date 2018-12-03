@@ -15,6 +15,8 @@ class MainViewController: UIViewController {
     @IBOutlet var historyView : SKView!
     @IBOutlet var bannerView1 : SDScrolledCollectionView!
     @IBOutlet var bannerView2 : SDScrolledCollectionView!
+    @IBOutlet var errorLabel  : UILabel!
+    
     private var _animatedMenuScene = AnimatedMenuScene(size: CGSize())
     private var _dataArray = [CuratedPhotoResult]()
     
@@ -271,22 +273,30 @@ extension MainViewController{
             })
             
             if returnCode >= 0 {
-                var historyArray = self.historyArray()
-                historyArray.insert(keyWord, at: 0)
-                
-                // Remove Duplicate
-                var tmpArray = [String]()
-                for value in historyArray {
-                    if tmpArray.contains(value) == false {
-                        tmpArray.append(value)
-                    }
+                guard let result : SearchPhotoResult = result else {
+                    return
                 }
-                historyArray = Array(tmpArray[0..<5])
-                
-                // Storage History Array
-                StorageManager.setLocalValueWithValue(historyArray as NSCopying, forKey: "HistoryArray")
-                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                    if result.photos?.count == 0 {
+                        self.showError(errorString: "Sorry, no pictures found!")
+                        return
+                    }
+                    
+                    var historyArray = self.historyArray()
+                    historyArray.insert(keyWord, at: 0)
+                    
+                    // Remove Duplicate
+                    var tmpArray = [String]()
+                    for value in historyArray {
+                        if tmpArray.contains(value) == false {
+                            tmpArray.append(value)
+                        }
+                    }
+                    historyArray = Array(tmpArray[0..<5])
+                    
+                    // Storage History Array
+                    StorageManager.setLocalValueWithValue(historyArray as NSCopying, forKey: "HistoryArray")
+                    
                     let sender = ["Result" : result as Any, "KeyWord" : keyWord]
                     self.performSegue(withIdentifier: "Main2Fall", sender: sender)
                 })
@@ -299,6 +309,7 @@ extension MainViewController{
 }
 
 
+// MARK: Animation
 extension MainViewController : UIViewControllerTransitioningDelegate {
     
     public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -329,6 +340,33 @@ extension MainViewController : UIViewControllerTransitioningDelegate {
         transition.startingPoint = searchButton.center
         transition.bubbleColor = searchButton.backgroundColor!
         return transition
+    }
+    
+    private func showError(errorString : String){
+        errorLabel.text = errorString
+        
+        
+        // Shake Animation
+        // Here is only one used in this project.
+        // If there need more view to shake, Ill put those code in to a UIView extension
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.07
+        animation.repeatCount = 3
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: errorLabel.center.x - 10, y: errorLabel.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: errorLabel.center.x + 10, y: errorLabel.center.y))
+        errorLabel.layer.add(animation, forKey: "position")
+        
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.errorLabel.alpha = 1.0
+        }) { (finished) in
+            UIView.animate(withDuration: 0.5, delay: 3.0, options: .layoutSubviews, animations: {
+                self.errorLabel.alpha = 0.0
+            }, completion: { (finished) in
+                
+            })
+        }
     }
     
 }

@@ -59,7 +59,13 @@ class DetailViewController: UIViewController {
         
         // Load Medium first, Then download Large file
         imageView?.sd_setImage(with: URL(string: (photoInfo?.photoURL.medium)!), completed: { (image, error, type, url) in
-            self.imageView?.sd_setImage(with: URL(string: ((self.photoInfo?.photoURL.large)!)), placeholderImage: image, options: .retryFailed, completed: nil)
+            
+            self.imageView?.sd_setImage(with: URL(string: ((self.photoInfo?.photoURL.original)!)), placeholderImage: image, options: .retryFailed , completed: { (largeImage, error, type, url) in
+                guard let largeImage = largeImage else {
+                    return
+                }
+                self.imageView?.image = largeImage
+            })
         })
         
         authorNameLabel?.text = photoInfo?.photographer
@@ -75,8 +81,9 @@ class DetailViewController: UIViewController {
     
     @IBAction private func goButtonClicked() {
         let sfVC = SFSafariViewController(url: URL(string: (photoInfo?.url)!)!)
-        self.navigationController?.pushViewController(sfVC, animated: true)
-        
+        self.navigationController?.present(sfVC, animated: true, completion: {
+            
+        })        
     }
     
 }

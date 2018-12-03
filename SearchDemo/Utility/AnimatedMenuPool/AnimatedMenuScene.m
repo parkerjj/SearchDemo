@@ -8,6 +8,7 @@
 
 #import "AnimatedMenuScene.h"
 #import "MenuItemNode.h"
+#import <CoreMotion/CoreMotion.h>
 
 
 static NSString *SelectAnimation = @"SelectAction";
@@ -19,6 +20,7 @@ static NSString *DeselectAnimation = @"DeselectAnimation";
 @property (nonatomic, assign) NSTimeInterval touchStartTime;
 @property (nonatomic, strong) SKNode *selectedNode;
 @property (nonatomic, strong) NSMutableArray *selectedNodes;
+@property (nonatomic, strong, readonly) CMMotionManager *motionManger;
 @end
 @implementation AnimatedMenuScene
 - (instancetype)initWithSize:(CGSize)size
@@ -38,6 +40,7 @@ static NSString *DeselectAnimation = @"DeselectAnimation";
 }
 - (void)configure
 {
+    
     self.magneticField = [SKFieldNode radialGravityField];
     self.scaleMode = SKSceneScaleModeAspectFill;
     CGRect frame = self.frame;
@@ -48,6 +51,12 @@ static NSString *DeselectAnimation = @"DeselectAnimation";
     self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:frame];
     self.magneticField.position = CGPointMake(frame.size.width/2, frame.size.height / 2);
     self.physicsWorld.gravity = CGVectorMake(0, 0);
+    
+    _motionManger = [[CMMotionManager alloc] init];
+    if ([_motionManger isAccelerometerAvailable]) {
+        [_motionManger startAccelerometerUpdates];
+    }
+    
 }
 
 //[self configure:view];
@@ -80,9 +89,9 @@ static NSString *DeselectAnimation = @"DeselectAnimation";
     node.physicsBody.dynamic = YES;
     node.physicsBody.affectedByGravity = YES;
     node.physicsBody.allowsRotation = YES;
-    node.physicsBody.mass = 0.7;
+    node.physicsBody.mass = 1.7;
     node.physicsBody.friction = 0.0f;
-    node.physicsBody.linearDamping = 0.7;
+    node.physicsBody.linearDamping = 0.2f;
     SKRange *xRange = [SKRange rangeWithLowerLimit:0 upperLimit:self.frame.size.width-node.frame.size.width];
     SKRange *yRange = [SKRange rangeWithLowerLimit:0 upperLimit:self.frame.size.height-node.frame.size.height];
     SKConstraint *constraint = [SKConstraint positionX:xRange Y:yRange];
@@ -178,7 +187,20 @@ static NSString *DeselectAnimation = @"DeselectAnimation";
 
 
 - (void)update:(NSTimeInterval)currentTime{
+    CMAccelerometerData *data = self.motionManger.accelerometerData;
+    if (data == nil) {
+        return;
+    }
     
+//    CGFloat valueY = data.acceleration.y;
+//    CGFloat valueX = data.acceleration.x;
+
+//    if (fabs(valueY) > 0.2f || fabs(valueX) > 0.2f) {
+//        CGVector v = CGVectorMake(800*valueX,800*valueY);
+//        for (SKNode *node in self.children) {
+//            [node.physicsBody applyForce:v];
+//        }
+//    }
 }
 
 

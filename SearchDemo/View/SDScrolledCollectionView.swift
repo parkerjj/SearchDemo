@@ -37,8 +37,21 @@ extension SDScrolledCollectionView {
     @objc func updateFrames()  {
         if direction == .left {
             contentOffset.x -= speed
+
+            
+            if (contentOffset.x < self.bounds.size.width/2) {
+                // Out of bound
+                self.setContentOffset(CGPoint(x: contentSize.width, y: 0), animated: false)
+
+                return
+            }
         }else {
             contentOffset.x += speed
+            if (contentOffset.x > (contentSize.width - self.bounds.size.width)) {
+                // Out of bound
+                self.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+                return
+            }
         }
     }
 }
