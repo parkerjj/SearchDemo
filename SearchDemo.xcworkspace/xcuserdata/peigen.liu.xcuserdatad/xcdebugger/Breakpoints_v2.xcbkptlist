@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SearchDemo/ViewController/DetailViewController.swift"
-            timestampString = "565540716.245361"
+            timestampString = "565587755.41948"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "rectZoomPosition()"
             landmarkType = "7">
          </BreakpointContent>
