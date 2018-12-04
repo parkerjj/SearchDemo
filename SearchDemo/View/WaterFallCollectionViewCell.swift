@@ -18,8 +18,7 @@ class WaterFallCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        photoImageView.backgroundColor = UIColor.clear
-        photoImageView.contentMode = .scaleAspectFill
+        photoImageView.backgroundColor = UIColor.white
         photoImageView.clipsToBounds = true
         photoImageView.layer.cornerRadius = 8.0
     }

@@ -9,6 +9,9 @@
 import Foundation
 
 
+let gifImage = UIImage.sd_animatedGIF(with: try! Data(contentsOf: Bundle.main.url(forResource: "LoadingGif", withExtension: "gif")!))
+
+
 class FallViewController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView! {
         didSet {
@@ -131,8 +134,11 @@ extension FallViewController: UICollectionViewDataSource , UICollectionViewDeleg
         
         
         let photoInfo = dataResult?.photos![indexPath.row]
+        cell.photoImageView.contentMode = .scaleAspectFill
+        cell.photoImageView.sd_setImage(with: URL(string: (photoInfo?.photoURL.large)!), placeholderImage:gifImage, options: .retryFailed) { (image, error, type, url) in
+
+        }
         
-        cell.photoImageView.sd_setImage(with: URL(string: (photoInfo?.photoURL.medium)!), completed: nil)
         cell.setText(text: photoInfo?.photographer ?? "")
         
         return cell

@@ -8,7 +8,6 @@
 
 import UIKit
 import SceneKit
-import SDWebImage
 
 class MainViewController: UIViewController {
     @IBOutlet var searchButton : SDSearchButtonView!
@@ -122,7 +121,9 @@ extension MainViewController : UICollectionViewDelegate , UICollectionViewDataSo
         let result = (collectionView == bannerView1) ? self._dataArray.first : self._dataArray.last
         let urlString = result?.photos![indexPath.row - 4].photoURL.medium
         
-        cell.imageView.sd_setImage(with: URL(string: urlString!), completed: nil)
+        
+        cell.imageView.sd_setImage(with:  URL(string: urlString!), placeholderImage:gifImage, options: .retryFailed) { (image, error, type, url) in
+        }
         cell.layoutIfNeeded()
         return cell
     }

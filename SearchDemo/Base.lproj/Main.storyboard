@@ -179,7 +179,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="334" height="412"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NHS-LU-RaQ">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LoadingGif.gif" translatesAutoresizingMaskIntoConstraints="NO" id="NHS-LU-RaQ">
                                                     <rect key="frame" x="0.0" y="0.0" width="334" height="404"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6mC-8l-ZEK">
@@ -345,6 +345,7 @@
         <image name="BG" width="1242" height="2688"/>
         <image name="BackButton" width="10.560000419616699" height="10.560000419616699"/>
         <image name="Background" width="1920" height="1276"/>
+        <image name="LoadingGif.gif" width="400" height="600"/>
         <image name="barButtonItem:Biu-gf-sOX:image" width="72" height="72">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGU1RYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QEQcI

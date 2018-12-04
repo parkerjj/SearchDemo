@@ -29,5 +29,9 @@ class BaseCollectionViewCell: UICollectionViewCell {
         imageView.backgroundColor = UIColor.clear
         imageView.contentMode = .scaleAspectFill
         
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 8.0
+
+        
     }
 }
