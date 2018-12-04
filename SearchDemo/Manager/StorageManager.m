@@ -43,7 +43,8 @@ static NSMutableDictionary *_plistDic;
 }
 
 
-
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (NSMutableDictionary*)readPListDictionaryToMemoery{
     NSURL *fileManagerURL =  [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] firstObject];
     NSURL *filePathURL = [fileManagerURL URLByAppendingPathComponent:@"/setting.dat"];
@@ -80,6 +81,9 @@ static NSMutableDictionary *_plistDic;
     }
     _plistDic = [_manager readPListDictionaryToMemoery];
 }
+#pragma clang diagnostic pop
+
+
 
 + (id)getLocalValueForKey:(NSString*)key{
     return [_plistDic objectForKey:key];
