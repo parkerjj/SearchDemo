@@ -113,12 +113,12 @@
 		E32D1FC021B3CC7700B3A6AA /* RZUniqueTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = E32D1FAD21B3CC7700B3A6AA /* RZUniqueTransition.m */; };
 		E32D1FC221B3CCE600B3A6AA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32D1FC121B3CCE600B3A6AA /* DetailViewController.swift */; };
 		E32D1FC521B3EF5A00B3A6AA /* UIImage+Blur.m in Sources */ = {isa = PBXBuildFile; fileRef = E32D1FC421B3EF5A00B3A6AA /* UIImage+Blur.m */; };
+		E397032621B6537B00A40344 /* NetworkManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E397032521B6537B00A40344 /* NetworkManagerTest.swift */; };
 		E3C3442521AFAE2E000FC71C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C3442421AFAE2E000FC71C /* AppDelegate.swift */; };
 		E3C3442721AFAE2E000FC71C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C3442621AFAE2E000FC71C /* MainViewController.swift */; };
 		E3C3442A21AFAE2E000FC71C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3C3442821AFAE2E000FC71C /* Main.storyboard */; };
 		E3C3442C21AFAE30000FC71C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3C3442B21AFAE30000FC71C /* Assets.xcassets */; };
 		E3C3442F21AFAE30000FC71C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3C3442D21AFAE30000FC71C /* LaunchScreen.storyboard */; };
-		E3C3443A21AFAE30000FC71C /* SearchDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C3443921AFAE30000FC71C /* SearchDemoTests.swift */; };
 		E3C3444621AFAE56000FC71C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C3444521AFAE56000FC71C /* NetworkManager.swift */; };
 		E3C3449821AFBD19000FC71C /* MotherResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C3449721AFBD19000FC71C /* MotherResult.swift */; };
 		E3C3449A21AFBE71000FC71C /* SearchPhotoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C3449921AFBE71000FC71C /* SearchPhotoResult.swift */; };
@@ -355,6 +355,7 @@
 		E32D1FC121B3CCE600B3A6AA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		E32D1FC321B3EF5900B3A6AA /* UIImage+Blur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Blur.h"; sourceTree = "<group>"; };
 		E32D1FC421B3EF5A00B3A6AA /* UIImage+Blur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Blur.m"; sourceTree = "<group>"; };
+		E397032521B6537B00A40344 /* NetworkManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTest.swift; sourceTree = "<group>"; };
 		E3C3442121AFAE2E000FC71C /* SearchDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C3442421AFAE2E000FC71C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3C3442621AFAE2E000FC71C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -363,7 +364,6 @@
 		E3C3442E21AFAE30000FC71C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3C3443021AFAE30000FC71C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3C3443521AFAE30000FC71C /* SearchDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SearchDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E3C3443921AFAE30000FC71C /* SearchDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDemoTests.swift; sourceTree = "<group>"; };
 		E3C3443B21AFAE30000FC71C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3C3444521AFAE56000FC71C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		E3C3449721AFBD19000FC71C /* MotherResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotherResult.swift; sourceTree = "<group>"; };
@@ -782,8 +782,8 @@
 		E3C3443821AFAE30000FC71C /* SearchDemoTests */ = {
 			isa = PBXGroup;
 			children = (
-				E3C3443921AFAE30000FC71C /* SearchDemoTests.swift */,
 				E3C3443B21AFAE30000FC71C /* Info.plist */,
+				E397032521B6537B00A40344 /* NetworkManagerTest.swift */,
 			);
 			path = SearchDemoTests;
 			sourceTree = "<group>";
@@ -881,6 +881,7 @@
 					};
 					E3C3443421AFAE30000FC71C = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 						TestTargetID = E3C3442021AFAE2E000FC71C;
 					};
 				};
@@ -1119,7 +1120,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3C3443A21AFAE30000FC71C /* SearchDemoTests.swift in Sources */,
+				E397032621B6537B00A40344 /* NetworkManagerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1336,6 +1337,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SearchDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1345,6 +1347,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.IOFutureTech.SearchDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SearchDemoTests/SearchDemoTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SearchDemo.app/SearchDemo";
@@ -1356,6 +1360,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SearchDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1365,6 +1370,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.IOFutureTech.SearchDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SearchDemoTests/SearchDemoTests-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SearchDemo.app/SearchDemo";

@@ -86,6 +86,8 @@ class FallViewController: UIViewController {
     }
     
     
+    
+    /// Load more triggered
     private func loadMore() {
         
         NetworkManager.shared.get(api: "search", params: ["query":keyWord! , "per_page":40, "page" : (dataResult?.page)!+1], resultType: SearchPhotoResult.self) { (returnCode, result) in

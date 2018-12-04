@@ -74,7 +74,7 @@ class DetailViewController: UIViewController {
         })
         
         authorNameLabel?.text = photoInfo?.photographer
-        //This API doesn't support Author Avatar right now
+        //TODO: This API doesn't support Author Avatar right now
 //        authorAvatarView?.sd_setImage(with: T##URL?, completed: T##SDExternalCompletionBlock?##SDExternalCompletionBlock?##(UIImage?, Error?, SDImageCacheType, URL?) -> Void)
         
         

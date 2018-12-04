@@ -29,6 +29,13 @@ extension NetworkManager  {
     
     
     
+    /// Get Method of Network Request
+    ///
+    /// - Parameters:
+    ///   - api: API
+    ///   - params: Params
+    ///   - resultType: The Result Class/Type you expected
+    ///   - completion: Completion closure
     func get<T : MotherResult>(api : String , params : [String : Any], resultType : T.Type, completion : @escaping (Int, T?) -> ()) {
         
         // Combine Parameters into Component

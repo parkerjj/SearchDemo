@@ -36,20 +36,22 @@ class MainViewController: UIViewController {
     
     func buildRootView() {
         
-        
+        // Build View by Code
         searchButton.delegate = self
         
+        // History View
         historyView.isHidden = true
         historyView.alpha = 0.0
         historyView.backgroundColor = .clear
         historyView.layer.cornerRadius = 15.0
         historyView.clipsToBounds = false
         
+        // AnimatedScence
         _animatedMenuScene.animatedSceneDelegate = self
         _animatedMenuScene.backgroundColor = .clear
 
-        
         historyView.presentScene(_animatedMenuScene)
+        
         
         // Rotate CollectionView
         var angel =  CGFloat(arc4random() % 100) / 100.0 / 4.0 * CGFloat(Double.pi)
@@ -72,6 +74,8 @@ class MainViewController: UIViewController {
 extension MainViewController : UICollectionViewDelegate , UICollectionViewDataSource {
     func initBannerData() {
         
+        // Start request photos
+        // I will be cache is for late use if I got more time.
         for _ in 0..<2 {
             let randomPage = Int(arc4random() % UInt32(100))
             NetworkManager.shared.get(api: "curated", params: ["per_page": 50, "page" : randomPage], resultType: CuratedPhotoResult.self) { (returnCode, result) in
@@ -93,11 +97,11 @@ extension MainViewController : UICollectionViewDelegate , UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard (_dataArray.count > 0) else {
+            // If no banner data then show default photo.
             return 4
         }
         
         let result = (collectionView == bannerView1) ? self._dataArray.first : self._dataArray.last
-
         return  (result!.photos?.count)! + 4
     }
     
@@ -107,12 +111,14 @@ extension MainViewController : UICollectionViewDelegate , UICollectionViewDataSo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainViewCollectionViewReuseId", for: indexPath) as! BaseCollectionViewCell
         
         if indexPath.row < 4 {
+            // Default Photo
             let offset = collectionView == bannerView1 ?  0 : 4
             cell.imageView.image = UIImage(named: "Default_" + String(offset + indexPath.row))
             return cell
         }
         
         
+        // Photo in Array
         let result = (collectionView == bannerView1) ? self._dataArray.first : self._dataArray.last
         let urlString = result?.photos![indexPath.row - 4].photoURL.medium
         
@@ -228,6 +234,10 @@ extension MainViewController : SDSearchButtonViewActionProtocol {
 // MARK: - History
 extension MainViewController  : AnimatedMenuSceneDelegate{
     
+    
+    /// Get History
+    ///
+    /// - Returns: Get history record. If nil then return a default [String]
     func historyArray () ->  [String]{
         var historyArray : [String]? = StorageManager.getLocalValue(forKey: "HistoryArray") as? [String]
         if historyArray == nil {
@@ -237,6 +247,8 @@ extension MainViewController  : AnimatedMenuSceneDelegate{
         return historyArray!
     }
     
+    
+    /// Add bubble of History
     func refreshAndLayoutHistory() {
         self._animatedMenuScene.size = self.historyView.frame.size
         
@@ -263,9 +275,7 @@ extension MainViewController  : AnimatedMenuSceneDelegate{
 extension MainViewController{
     func searchQuary( keyWord : String ) {
         searchButton.clearTextField()
-
         searchButton.startLoading()
-        
         
         NetworkManager.shared.get(api: "search", params: ["query":keyWord , "per_page":40 ], resultType: SearchPhotoResult.self) { (returnCode, result) in
             DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
@@ -341,6 +351,8 @@ extension MainViewController : UIViewControllerTransitioningDelegate {
         transition.bubbleColor = searchButton.backgroundColor!
         return transition
     }
+    
+    
     
     private func showError(errorString : String){
         errorLabel.text = errorString

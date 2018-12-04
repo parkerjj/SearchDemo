@@ -10,7 +10,7 @@ import Foundation
 
 
 
-struct PhotoInfo : Codable {
+struct  PhotoInfo : Codable {
     let id              : Int
     let width           : Int
     let height          : Int
@@ -45,6 +45,8 @@ struct PhotoInfo : Codable {
         try container.encode(photographerURL, forKey: .photographerURL)
         try container.encode(photoURL, forKey: .photoURL)
     }
+    
+    
     
     enum PhotoResultCodingKeys: String, CodingKey {
         case id
