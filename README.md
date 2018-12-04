@@ -1,5 +1,5 @@
 
-# SearchDemo
+# Pexels Search 
 
 ### Intro
 This is a demo of photo searching & viewer.
@@ -31,8 +31,33 @@ In this App, I made lots of smooth animation for UE.
 
 
 
-### Something still need to improvment
+### TODO: Something still need to improvement
 - ##### Photographer's  Avatar
 Pexels isn't support to get the photographer's avatar on his APIs.
 But I still leave a blank avatar view on DetailViewController for reserved.
-- ##### 
+- ##### More Suggestion & Review
+Maybe I can get some server and made a backend to log user's search keyword by anonymous.
+And on some future version, a page can show the best of the best photo base on user selected.
+- ##### More API support
+I hope this App may become a unofficial client of Pexels, using their APIs.
+- ##### Pure Swift
+I used some wheels i write before, using on my privous Application. But they are Objective-C.
+ObjC is good, runtime is great. But not very safe. 
+Hope I can have some time to convert them into latest Swift.
+- ##### Full version of NetworkManager
+Improvement of the NetworkManager, Add cache to every request. Then will avoid flood attack to server, and get data respone very quick on duplicated request.
+
+### Thanks for
+- [RZTransitions](https://github.com/Raizlabs/RZTransitions) 
+  > RZTransitions is a library to help make iOS7 custom View Controller transitions slick and simple.
+- [GTMRefresh](https://github.com/GTMYang/GTMRefresh)
+  > Very good library to implement Pull & load more.
+- [SnapKit](https://github.com/SnapKit/SnapKit)
+  > Thank for SnapKit, so I can handle AutoLayout so easily on code.
+
+
+
+
+
+
+
